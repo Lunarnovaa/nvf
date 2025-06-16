@@ -116,7 +116,7 @@ in {
       --options-depth 2 \
       --generate-search true \
       --highlight-code true \
-      --input-dir ${./docs/manual/manual.md} \
+      --input-dir ${./docs} \
       --output-dir "$out"
   '';
 
@@ -124,12 +124,15 @@ in {
     # Generate manpages.
     mkdir -p $out/share/man/{man5,man1}
 
+    header=$(cat ${./man/header.5})
+    footer=$(cat ${./man/footer.5})
+
     ndg --verbose manpage \
       --title "nvf" \
       --section 5 \
       --module-options ${nvimModuleOptionsJSON}/share/doc/nixos/options.json \
-      #--header ${builtins.readFile ./man/header.5} \
-      #--footer ${builtins.readFile ./man/footer.5} \
+      --header "$header" \
+      --footer "$footer" \
       --output-file "$out/share/man/man5/nvf.5"
 
     cp ${./man/nvf.1} $out/share/man/man1/nvf.1
