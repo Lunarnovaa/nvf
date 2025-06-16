@@ -33,6 +33,7 @@
         };
 
       docs = docs.nvfDocs;
+      docs-html = docs.nvfDocs;
       docs-manpages = docs.manPages;
       docs-json = docs.options.json;
       docs-linkcheck = let
