@@ -79,6 +79,13 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-utils.url = "github:numtide/flake-utils";
     systems.url = "github:nix-systems/default";
+    ndg = {
+      url = "github:feel-co/ndg";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
+    };
 
     # Alternate neovim-wrapper
     mnw.url = "github:Gerg-L/mnw";
