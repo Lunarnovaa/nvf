@@ -35070,10 +35070,8 @@ not listed in the docs</p>
   <div class="option-type">Type: <code>attribute set of list of string</code></div>
   <div class="option-description"><p>Additional words to be used for spellchecking. The names of each key will be
 used as the language code for the spell file. For example</p>
-<pre style="background-color:#ffffff;">
-<span style="color:#183691;">&quot;en.utf-8&quot; </span><span style="background-color:#f5f5f5;font-weight:bold;color:#b52a1d;">=</span><span style="color:#323232;"> [ </span><span style="background-color:#f5f5f5;font-weight:bold;color:#b52a1d;">...</span><span style="color:#323232;"> ]</span><span style="background-color:#f5f5f5;font-weight:bold;color:#b52a1d;">;</span><span style="color:#323232;">
-</span></pre>
-<p>will result in <code>en.utf-8.add.spl</code> being added to Neovim's runtime in the
+<pre><code class="language-nix">&quot;en.utf-8&quot; = [ ... ];
+</code></pre><p>will result in <code>en.utf-8.add.spl</code> being added to Neovim's runtime in the
 <code class="file-path">spell</code> directory.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -42633,28 +42631,26 @@ in <a href="#opt-vim.visuals.fidget-nvim.setupOpts.notification.configs"></a>.</
 <p>If any of the fields are null, the value from the default
 configuration is used.</p>
 <p>If default configuration is not defined, the following defaults are used:</p>
-<pre style="background-color:#ffffff;">
-<span style="color:#323232;">   {
-</span><span style="color:#323232;">       </span><span style="color:#183691;">name </span><span style="color:#323232;">= </span><span style="color:#183691;">&quot;Notifications&quot;</span><span style="color:#323232;">,
-</span><span style="color:#323232;">       </span><span style="color:#183691;">icon </span><span style="color:#323232;">= </span><span style="color:#183691;">&quot;❰❰&quot;</span><span style="color:#323232;">,
-</span><span style="color:#323232;">       </span><span style="color:#183691;">ttl </span><span style="color:#323232;">= </span><span style="color:#0086b3;">5</span><span style="color:#323232;">,
-</span><span style="color:#323232;">       </span><span style="color:#183691;">group_style </span><span style="color:#323232;">= </span><span style="color:#183691;">&quot;Title&quot;</span><span style="color:#323232;">,
-</span><span style="color:#323232;">       </span><span style="color:#183691;">icon_style </span><span style="color:#323232;">= </span><span style="color:#183691;">&quot;Special&quot;</span><span style="color:#323232;">,
-</span><span style="color:#323232;">       </span><span style="color:#183691;">annote_style </span><span style="color:#323232;">= </span><span style="color:#183691;">&quot;Question&quot;</span><span style="color:#323232;">,
-</span><span style="color:#323232;">       </span><span style="color:#183691;">debug_style </span><span style="color:#323232;">= </span><span style="color:#183691;">&quot;Comment&quot;</span><span style="color:#323232;">,
-</span><span style="color:#323232;">       </span><span style="color:#183691;">info_style </span><span style="color:#323232;">= </span><span style="color:#183691;">&quot;Question&quot;</span><span style="color:#323232;">,
-</span><span style="color:#323232;">       </span><span style="color:#183691;">warn_style </span><span style="color:#323232;">= </span><span style="color:#183691;">&quot;WarningMsg&quot;</span><span style="color:#323232;">,
-</span><span style="color:#323232;">       </span><span style="color:#183691;">error_style </span><span style="color:#323232;">= </span><span style="color:#183691;">&quot;ErrorMsg&quot;</span><span style="color:#323232;">,
-</span><span style="color:#323232;">       </span><span style="color:#183691;">debug_annote </span><span style="color:#323232;">= </span><span style="color:#183691;">&quot;DEBUG&quot;</span><span style="color:#323232;">,
-</span><span style="color:#323232;">       </span><span style="color:#183691;">info_annote </span><span style="color:#323232;">= </span><span style="color:#183691;">&quot;INFO&quot;</span><span style="color:#323232;">,
-</span><span style="color:#323232;">       </span><span style="color:#183691;">warn_annote </span><span style="color:#323232;">= </span><span style="color:#183691;">&quot;WARN&quot;</span><span style="color:#323232;">,
-</span><span style="color:#323232;">       </span><span style="color:#183691;">error_annote </span><span style="color:#323232;">= </span><span style="color:#183691;">&quot;ERROR&quot;</span><span style="color:#323232;">,
-</span><span style="color:#323232;">       </span><span style="font-weight:bold;color:#795da3;">update_hook </span><span style="color:#323232;">= </span><span style="font-weight:bold;color:#a71d5d;">function</span><span style="color:#323232;">(item)
-</span><span style="color:#323232;">         notification.set_content_key(item)
-</span><span style="color:#323232;">       </span><span style="font-weight:bold;color:#a71d5d;">end</span><span style="color:#323232;">,
-</span><span style="color:#323232;">   }
-</span></pre>
-</div>
+<pre><code class="language-lua">   {
+       name = &quot;Notifications&quot;,
+       icon = &quot;❰❰&quot;,
+       ttl = 5,
+       group_style = &quot;Title&quot;,
+       icon_style = &quot;Special&quot;,
+       annote_style = &quot;Question&quot;,
+       debug_style = &quot;Comment&quot;,
+       info_style = &quot;Question&quot;,
+       warn_style = &quot;WarningMsg&quot;,
+       error_style = &quot;ErrorMsg&quot;,
+       debug_annote = &quot;DEBUG&quot;,
+       info_annote = &quot;INFO&quot;,
+       warn_annote = &quot;WARN&quot;,
+       error_annote = &quot;ERROR&quot;,
+       update_hook = function(item)
+         notification.set_content_key(item)
+       end,
+   }
+</code></pre></div>
   <div class="option-default">Default: <code>{ }</code></div>
   <div class="option-example">Example: <pre><code>{
   rust_analyzer = {

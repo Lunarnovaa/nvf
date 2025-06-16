@@ -536,20 +536,16 @@ introduced. It can be either a string, or a list of strings, where a string
 represents the short-name of the map mode(s), that the mapping should be set
 for. See <code>:help map-modes</code> for more information.</p>
 <p>For example:</p>
-<pre style="background-color:#ffffff;">
-<span style="color:#323232;">vim</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">maps</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">normal</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#183691;">&quot;&lt;leader&gt;m&quot; </span><span style="background-color:#f5f5f5;font-weight:bold;color:#b52a1d;">=</span><span style="color:#323232;"> { ... }</span><span style="background-color:#f5f5f5;font-weight:bold;color:#b52a1d;">;</span><span style="color:#323232;">
-</span></pre>
-<p>has to be replaced by</p>
-<pre style="background-color:#ffffff;">
-<span style="color:#323232;">vim</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">keymaps </span><span style="background-color:#f5f5f5;font-weight:bold;color:#b52a1d;">=</span><span style="color:#323232;"> [
-</span><span style="color:#323232;">  {
-</span><span style="color:#323232;">    </span><span style="color:#795da3;">key </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#183691;">&quot;&lt;leader&gt;m&quot;</span><span style="color:#323232;">;
-</span><span style="color:#323232;">    </span><span style="color:#795da3;">mode </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#183691;">&quot;n&quot;</span><span style="color:#323232;">;
-</span><span style="color:#323232;">  }
-</span><span style="color:#323232;">  </span><span style="font-weight:bold;color:#a71d5d;">...
-</span><span style="color:#323232;">]</span><span style="background-color:#f5f5f5;font-weight:bold;color:#b52a1d;">;</span><span style="color:#323232;">
-</span></pre>
-<h4 id="sec-nvim-code-action-menu-deprecation"><a href="options.html#option-vim-lsp-nvimCodeActionMenu" class="option-reference"><code>vim.lsp.nvimCodeActionMenu</code></a> removed in favor of <a href="options.html#option-vim-ui-fastaction" class="option-reference"><code>vim.ui.fastaction</code></a></h4>
+<pre><code class="language-nix">vim.maps.normal.&quot;&lt;leader&gt;m&quot; = { ... };
+</code></pre><p>has to be replaced by</p>
+<pre><code class="language-nix">vim.keymaps = [
+  {
+    key = &quot;&lt;leader&gt;m&quot;;
+    mode = &quot;n&quot;;
+  }
+  ...
+];
+</code></pre><h4 id="sec-nvim-code-action-menu-deprecation"><a href="options.html#option-vim-lsp-nvimCodeActionMenu" class="option-reference"><code>vim.lsp.nvimCodeActionMenu</code></a> removed in favor of <a href="options.html#option-vim-ui-fastaction" class="option-reference"><code>vim.ui.fastaction</code></a></h4>
 <p>The nvim-code-action-menu plugin has been archived and broken for a long time,
 so it's being replaced with a young, but better alternative called
 fastaction.nvim. Simply remove everything set under
@@ -892,27 +888,25 @@ the warning, please file a bug report!</p>
 <p>To make your migration process less annoying, here's a keybind that will help
 you with renaming stuff from camelCase to snake_case (you'll be doing that a
 lot):</p>
-<pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;">-- paste this in a temp.lua file and load it in vim with :source /path/to/temp.lua
-</span><span style="font-weight:bold;color:#a71d5d;">function </span><span style="font-weight:bold;color:#795da3;">camelToSnake</span><span style="color:#323232;">()
-</span><span style="color:#323232;">    </span><span style="font-style:italic;color:#969896;">-- Get the current word under the cursor
-</span><span style="color:#323232;">    </span><span style="font-weight:bold;color:#a71d5d;">local </span><span style="color:#323232;">word </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">vim.fn.expand(</span><span style="color:#183691;">&quot;&lt;cword&gt;&quot;</span><span style="color:#323232;">)
-</span><span style="color:#323232;">    </span><span style="font-style:italic;color:#969896;">-- Replace each capital letter with an underscore followed by its lowercase equivalent
-</span><span style="color:#323232;">    </span><span style="font-weight:bold;color:#a71d5d;">local </span><span style="color:#323232;">snakeCase </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#0086b3;">string</span><span style="color:#323232;">.</span><span style="color:#62a35c;">gsub</span><span style="color:#323232;">(word, </span><span style="color:#183691;">&quot;%u&quot;</span><span style="color:#323232;">, </span><span style="font-weight:bold;color:#a71d5d;">function</span><span style="color:#323232;">(match)
-</span><span style="color:#323232;">        </span><span style="font-weight:bold;color:#a71d5d;">return </span><span style="color:#183691;">&quot;_&quot; </span><span style="font-weight:bold;color:#a71d5d;">.. </span><span style="color:#0086b3;">string</span><span style="color:#323232;">.</span><span style="color:#62a35c;">lower</span><span style="color:#323232;">(match)
-</span><span style="color:#323232;">    </span><span style="font-weight:bold;color:#a71d5d;">end</span><span style="color:#323232;">)
-</span><span style="color:#323232;">    </span><span style="font-style:italic;color:#969896;">-- Remove the leading underscore if present
-</span><span style="color:#323232;">    </span><span style="font-weight:bold;color:#a71d5d;">if </span><span style="color:#0086b3;">string</span><span style="color:#323232;">.</span><span style="color:#62a35c;">sub</span><span style="color:#323232;">(snakeCase, </span><span style="color:#0086b3;">1</span><span style="color:#323232;">, </span><span style="color:#0086b3;">1</span><span style="color:#323232;">) </span><span style="font-weight:bold;color:#a71d5d;">== </span><span style="color:#183691;">&quot;_&quot; </span><span style="font-weight:bold;color:#a71d5d;">then
-</span><span style="color:#323232;">        snakeCase </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#0086b3;">string</span><span style="color:#323232;">.</span><span style="color:#62a35c;">sub</span><span style="color:#323232;">(snakeCase, </span><span style="color:#0086b3;">2</span><span style="color:#323232;">)
-</span><span style="color:#323232;">    </span><span style="font-weight:bold;color:#a71d5d;">end
-</span><span style="color:#323232;">    vim.fn.setreg(vim.v.register, snakeCase)
-</span><span style="color:#323232;">    </span><span style="font-style:italic;color:#969896;">-- Select the word under the cursor and paste
-</span><span style="color:#323232;">    vim.cmd(</span><span style="color:#183691;">&quot;normal! viwP&quot;</span><span style="color:#323232;">)
-</span><span style="font-weight:bold;color:#a71d5d;">end
-</span><span style="color:#323232;">
-</span><span style="color:#323232;">vim.api.nvim_set_keymap(</span><span style="color:#183691;">&#39;n&#39;</span><span style="color:#323232;">, </span><span style="color:#183691;">&#39;&lt;leader&gt;a&#39;</span><span style="color:#323232;">, </span><span style="color:#183691;">&#39;:lua camelToSnake()&lt;CR&gt;&#39;</span><span style="color:#323232;">, { </span><span style="color:#183691;">noremap </span><span style="color:#323232;">= </span><span style="color:#0086b3;">true</span><span style="color:#323232;">, </span><span style="color:#183691;">silent </span><span style="color:#323232;">= </span><span style="color:#0086b3;">true </span><span style="color:#323232;">})
-</span></pre>
-<h3 id="sec-release-0.6-changelog">Changelog</h3>
+<pre><code class="language-lua">-- paste this in a temp.lua file and load it in vim with :source /path/to/temp.lua
+function camelToSnake()
+    -- Get the current word under the cursor
+    local word = vim.fn.expand(&quot;&lt;cword&gt;&quot;)
+    -- Replace each capital letter with an underscore followed by its lowercase equivalent
+    local snakeCase = string.gsub(word, &quot;%u&quot;, function(match)
+        return &quot;_&quot; .. string.lower(match)
+    end)
+    -- Remove the leading underscore if present
+    if string.sub(snakeCase, 1, 1) == &quot;_&quot; then
+        snakeCase = string.sub(snakeCase, 2)
+    end
+    vim.fn.setreg(vim.v.register, snakeCase)
+    -- Select the word under the cursor and paste
+    vim.cmd(&quot;normal! viwP&quot;)
+end
+
+vim.api.nvim_set_keymap(&#39;n&#39;, &#39;&lt;leader&gt;a&#39;, &#39;:lua camelToSnake()&lt;CR&gt;&#39;, { noremap = true, silent = true })
+</code></pre><h3 id="sec-release-0.6-changelog">Changelog</h3>
 <p><a href="https://github.com/ksonj">ksonj</a>:</p>
 <ul>
 <li><p>Added Terraform language support.</p>
@@ -1468,10 +1462,8 @@ allows for ordering of the config. Usage is the same is in home-manager's
 <a href="options.html#option-home-activation" class="option-reference"><code>home.activation</code></a> option.</p>
 </li>
 </ul>
-<pre style="background-color:#ffffff;">
-<span style="color:#323232;">vim</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">luaConfigRC </span><span style="background-color:#f5f5f5;font-weight:bold;color:#b52a1d;">=</span><span style="color:#323232;"> lib</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">nvim</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">dag</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">entryAnywhere </span><span style="color:#183691;">&quot;config here&quot;
-</span></pre>
-<p><a href="https://github.com/MoritzBoehme">MoritzBoehme</a>:</p>
+<pre><code class="language-nix">vim.luaConfigRC = lib.nvim.dag.entryAnywhere &quot;config here&quot;
+</code></pre><p><a href="https://github.com/MoritzBoehme">MoritzBoehme</a>:</p>
 <ul>
 <li><code>catppuccin</code> theme is now available as a neovim theme <a href="#opt-vim.theme.style"></a>
 and Lualine theme <a href="#opt-vim.statusline.lualine.theme"></a>.</li>
