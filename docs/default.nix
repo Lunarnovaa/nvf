@@ -92,7 +92,7 @@
         };
     }).optionsJSON;
 in {
-  "options.json" =
+  options.json =
     pkgs.runCommand "options.json" {
       meta.description = "List of nvf options in JSON format";
     } ''

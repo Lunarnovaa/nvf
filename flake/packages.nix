@@ -34,7 +34,7 @@
 
       docs = docs.nvfDocs;
       docs-manpages = docs.manPages;
-      docs-json = docs."options.json";
+      docs-json = docs.options.json;
       docs-linkcheck = let
         site = config.packages.docs;
       in
