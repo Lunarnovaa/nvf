@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NixOS Module</title>
+    <style>
+      /* Critical CSS to prevent sidebar flash */
+      body.sidebar-collapsed .sidebar {
+        transform: translateX(-100%);
+      }
+
+      body.sidebar-collapsed .sidebar-toggle {
+        left: 0;
+      }
+
+      body.sidebar-collapsed .sidebar-toggle svg {
+        transform: rotate(180deg);
+      }
+    </style>
+    <script>
+      // Apply sidebar state immediately before any DOM rendering
+      (function() {
+        if (localStorage.getItem("sidebar-collapsed") === "true") {
+          document.documentElement.classList.add("sidebar-collapsed");
+          document.body.classList.add("sidebar-collapsed");
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="assets/style.css" />
+    
+    <script defer src="assets/search.js"></script>
+    
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="header-left">
+          <h1 class="site-title"><a href="index.html">nvf</a></h1>
+        </div>
+        <nav class="header-nav">
+          <ul>
+            <li ><a href="options.html">Options</a></li>
+            
+            <li><a href="search.html">Search</a></li>
+            
+          </ul>
+        </nav>
+        
+        <div class="search-container">
+          <input type="text" id="search-input" placeholder="Search..." />
+          <div id="search-results" class="search-results"></div>
+        </div>
+        
+      </header>
+
+      <div class="layout">
+        <div class="sidebar-toggle" aria-label="Toggle sidebar">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+          >
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+          </svg>
+        </div>
+        <nav class="sidebar">
+          <div class="docs-nav">
+            <h2>Documents</h2>
+            <ul>
+              <li><a href="installation/custom-configuration.html">Standalone Installation</a></li>
+<li><a href="installation/modules.html">Module Installation</a></li>
+<li><a href="installation/standalone/nixos.html">Standalone Installation on NixOS</a></li>
+<li><a href="installation/standalone/home-manager.html">Standalone Installation on Home-Manager</a></li>
+<li><a href="installation/modules/nixos.html">NixOS Module</a></li>
+<li><a href="installation/modules/home-manager.html">Home-Manager Module</a></li>
+<li><a href="quirks.html">Known Issues and Quirks</a></li>
+<li><a href="configuring.html">Configuring nvf</a></li>
+<li><a href="tips.html">Helpful Tips</a></li>
+<li><a href="try-it-out.html">Try it out</a></li>
+<li><a href="options.html">nvf Configuration Options</a></li>
+<li><a href="quirks/nodejs.html">NodeJS</a></li>
+<li><a href="configuring/languages.html">Language Support</a></li>
+<li><a href="configuring/autocmds.html">Autocommands and Autogroups</a></li>
+<li><a href="configuring/custom-package.html">Custom Neovim Package</a></li>
+<li><a href="configuring/overriding-plugins.html">Overriding plugins</a></li>
+<li><a href="configuring/languages/lsp.html">LSP Custom Packages/Command</a></li>
+<li><a href="configuring/custom-plugins.html">Custom Plugins</a></li>
+<li><a href="configuring/dag-entries.html">DAG entries in nvf</a></li>
+<li><a href="configuring/dags.html">Using DAGs</a></li>
+<li><a href="configuring/custom-plugins/non-lazy-method.html">Non-lazy Method</a></li>
+<li><a href="configuring/custom-plugins/configuring.html">Configuring</a></li>
+<li><a href="configuring/custom-plugins/legacy-method.html">Legacy Method</a></li>
+<li><a href="configuring/custom-plugins/lazy-method.html">Lazy Method</a></li>
+<li><a href="hacking/additional-plugins.html">Adding Plugins</a></li>
+<li><a href="hacking/getting-started.html">Getting Started</a></li>
+<li><a href="hacking/guidelines.html">Guidelines</a></li>
+<li><a href="hacking/testing.html">Testing Changes</a></li>
+<li><a href="hacking/keybinds.html">Keybinds</a></li>
+<li><a href="installation.html">Installing nvf</a></li>
+<li><a href="manual.html">nvf manual</a></li>
+<li><a href="hacking.html">Hacking nvf</a></li>
+<li><a href="tips/debugging-nvf.html">Debugging nvf</a></li>
+<li><a href="tips/offline-docs.html">Offline Documentation</a></li>
+<li><a href="tips/plugin-sources.html">Adding Plugins From Different Sources</a></li>
+<li><a href="tips/pure-lua-config.html">Pure Lua Configuration</a></li>
+<li><a href="preface.html">Preface</a></li>
+<li><a href="search.html">Search</a></li>
+
+            </ul>
+          </div>
+
+          <div class="toc">
+            <h2>Contents</h2>
+            <ul class="toc-list">
+              <li><a href="#ch-nixos-module">NixOS Module</a>
+<ul><li><a href="#sec-example-installation-nixos">Example Installation</a>
+</li></ul></li>
+            </ul>
+          </div>
+        </nav>
+
+        <main class="content">
+          <h1 id="ch-nixos-module">NixOS Module</h1>
+<p>The NixOS module allows us to customize the different <code>vim</code> options from inside
+the NixOS configuration without having to call for the wrapper yourself. It is
+the recommended way to use <strong>nvf</strong> alongside the home-manager module depending
+on your needs.</p>
+<p>To use it, we first add the input flake.</p>
+<pre style="background-color:#ffffff;">
+<span style="color:#323232;">{
+</span><span style="color:#323232;">  </span><span style="color:#795da3;">inputs </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">{
+</span><span style="color:#323232;">    </span><span style="font-style:italic;color:#969896;"># Optional, if you intend to follow nvf&#39;s obsidian-nvim input
+</span><span style="color:#323232;">    </span><span style="font-style:italic;color:#969896;"># you must also add it as a flake input.
+</span><span style="color:#323232;">    </span><span style="color:#795da3;">obsidian-nvim</span><span style="color:#323232;">.</span><span style="color:#795da3;">url </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#183691;">&quot;github:epwalsh/obsidian.nvim&quot;</span><span style="color:#323232;">;
+</span><span style="color:#323232;">
+</span><span style="color:#323232;">    </span><span style="font-style:italic;color:#969896;"># Required, nvf works best and only directly supports flakes
+</span><span style="color:#323232;">    </span><span style="color:#795da3;">nvf </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">{
+</span><span style="color:#323232;">      </span><span style="color:#795da3;">url </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#183691;">&quot;github:notashelf/nvf&quot;</span><span style="color:#323232;">;
+</span><span style="color:#323232;">      </span><span style="font-style:italic;color:#969896;"># You can override the input nixpkgs to follow your system&#39;s
+</span><span style="color:#323232;">      </span><span style="font-style:italic;color:#969896;"># instance of nixpkgs. This is safe to do as nvf does not depend
+</span><span style="color:#323232;">      </span><span style="font-style:italic;color:#969896;"># on a binary cache.
+</span><span style="color:#323232;">      </span><span style="color:#795da3;">inputs</span><span style="color:#323232;">.</span><span style="color:#795da3;">nixpkgs</span><span style="color:#323232;">.</span><span style="color:#795da3;">follows </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#183691;">&quot;nixpkgs&quot;</span><span style="color:#323232;">;
+</span><span style="color:#323232;">      </span><span style="font-style:italic;color:#969896;"># Optionally, you can also override individual plugins
+</span><span style="color:#323232;">      </span><span style="font-style:italic;color:#969896;"># for example:
+</span><span style="color:#323232;">      </span><span style="color:#795da3;">inputs</span><span style="color:#323232;">.</span><span style="color:#795da3;">obsidian-nvim</span><span style="color:#323232;">.</span><span style="color:#795da3;">follows </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#183691;">&quot;obsidian-nvim&quot;</span><span style="color:#323232;">; </span><span style="font-style:italic;color:#969896;"># &lt;- this will use the obsidian-nvim from your inputs
+</span><span style="color:#323232;">    };
+</span><span style="color:#323232;">  };
+</span><span style="color:#323232;">}
+</span></pre>
+<p>Followed by importing the NixOS module somewhere in your configuration.</p>
+<pre style="background-color:#ffffff;">
+<span style="color:#323232;">{
+</span><span style="color:#323232;">  </span><span style="font-style:italic;color:#969896;"># assuming nvf is in your inputs and inputs is in the argset
+</span><span style="color:#323232;">  </span><span style="font-style:italic;color:#969896;"># see example below
+</span><span style="color:#323232;">  </span><span style="color:#795da3;">imports </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">[ inputs</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">nvf</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">nixosModules</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">default ];
+</span><span style="color:#323232;">}
+</span></pre>
+<h2 id="sec-example-installation-nixos">Example Installation</h2>
+<pre style="background-color:#ffffff;">
+<span style="color:#323232;">{
+</span><span style="color:#323232;">  </span><span style="color:#795da3;">inputs </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">{
+</span><span style="color:#323232;">    </span><span style="color:#795da3;">nixpkgs</span><span style="color:#323232;">.</span><span style="color:#795da3;">url </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#183691;">&quot;github:NixOS/nixpkgs/nixos-unstable&quot;</span><span style="color:#323232;">;
+</span><span style="color:#323232;">    </span><span style="color:#795da3;">nvf</span><span style="color:#323232;">.</span><span style="color:#795da3;">url </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#183691;">&quot;github:notashelf/nvf&quot;</span><span style="color:#323232;">;
+</span><span style="color:#323232;">  };
+</span><span style="color:#323232;">
+</span><span style="color:#323232;">  </span><span style="color:#795da3;">outputs </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">{ nixpkgs</span><span style="font-weight:bold;color:#a71d5d;">, </span><span style="color:#323232;">nvf</span><span style="font-weight:bold;color:#a71d5d;">, ... </span><span style="color:#323232;">}: {
+</span><span style="color:#323232;">    </span><span style="font-style:italic;color:#969896;"># ↓ this is your host output in the flake schema
+</span><span style="color:#323232;">    </span><span style="color:#795da3;">nixosConfigurations</span><span style="color:#323232;">.</span><span style="color:#183691;">&quot;your-hostname&quot; </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">nixpkgs</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">lib</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">nixosSystem {
+</span><span style="color:#323232;">      </span><span style="color:#795da3;">modules </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">[
+</span><span style="color:#323232;">        nvf</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">nixosModules</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">default </span><span style="font-style:italic;color:#969896;"># &lt;- this imports the NixOS module that provides the options
+</span><span style="color:#323232;">        </span><span style="color:#183691;">./configuration.nix </span><span style="font-style:italic;color:#969896;"># &lt;- your host entrypoint, `programs.nvf.*` may be defined here
+</span><span style="color:#323232;">      ];
+</span><span style="color:#323232;">    };
+</span><span style="color:#323232;">  };
+</span><span style="color:#323232;">}
+</span></pre>
+<p>Once the module is properly imported by your host, you will be able to use the
+<a href="options.html#option-programs-nvf" class="option-reference"><code>programs.nvf</code></a> module option anywhere in your configuration in order to
+configure <strong>nvf</strong>.</p>
+<pre style="background-color:#ffffff;">
+<span style="color:#323232;">  programs.nvf = {
+</span><span style="color:#323232;">    enable = true;
+</span><span style="color:#323232;">    # your settings need to go into the settings attribute set
+</span><span style="color:#323232;">    # most settings are documented in the appendix
+</span><span style="color:#323232;">    settings = {
+</span><span style="color:#323232;">      vim.viAlias = false;
+</span><span style="color:#323232;">      vim.vimAlias = true;
+</span><span style="color:#323232;">      vim.lsp = {
+</span><span style="color:#323232;">        enable = true;
+</span><span style="color:#323232;">      };
+</span><span style="color:#323232;">    };
+</span><span style="color:#323232;">  };
+</span><span style="color:#323232;">}
+</span></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>nvf</strong> exposes a lot of options, most of which are not referenced in the
+installation sections of the manual. You may find all available options in the
+<a href="https://notashelf.github.io/nvf/options">appendix</a></p>
+</div>
+
+          <div class="footnotes-container">
+            <!-- Footnotes will be appended here -->
+          </div>
+        </main>
+      </div>
+
+      <footer>
+        <p></p>
+      </footer>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Sidebar Toggle functionality
+        const toggle = document.querySelector(".sidebar-toggle");
+
+        if (toggle) {
+          toggle.addEventListener("click", function () {
+            document.body.classList.toggle("sidebar-collapsed");
+
+            // Save state to localStorage
+            const isCollapsed = document.body.classList.contains("sidebar-collapsed");
+            localStorage.setItem("sidebar-collapsed", isCollapsed);
+          });
+        }
+
+        // Make headings clickable for anchor links
+        const content = document.querySelector(".content");
+        const headings = content.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        headings.forEach(function (heading) {
+          // Make sure all headings have IDs
+          if (!heading.id) {
+            heading.id = heading.textContent
+              .toLowerCase()
+              .replace(/[^\w\s-]/g, "")
+              .replace(/[\s-]+/g, "-")
+              .trim();
+
+            if (!heading.id) {
+              heading.id =
+                "section-" + Math.random().toString(36).substring(2, 9);
+            }
+          }
+
+          // Make the entire heading clickable
+          heading.addEventListener("click", function (e) {
+            const id = this.id;
+            history.pushState(null, null, "#" + id);
+
+            // Scroll with offset
+            const offset =
+              this.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({
+              top: offset,
+              behavior: "smooth",
+            });
+          });
+        });
+
+        // Process footnotes
+        const footnoteContainer = document.querySelector(
+          ".footnotes-container",
+        );
+
+        // Find all footnote references and create a footnotes section
+        const footnoteRefs = content.querySelectorAll('a[href^="#fn"]');
+        if (footnoteRefs.length > 0) {
+          const footnotesDiv = document.createElement("div");
+          footnotesDiv.className = "footnotes";
+
+          const footnotesHeading = document.createElement("h2");
+          footnotesHeading.textContent = "Footnotes";
+          footnotesDiv.appendChild(footnotesHeading);
+
+          const footnotesList = document.createElement("ol");
+          footnoteContainer.appendChild(footnotesDiv);
+          footnotesDiv.appendChild(footnotesList);
+
+          // Add footnotes
+          document.querySelectorAll(".footnote").forEach((footnote) => {
+            const id = footnote.id;
+            const content = footnote.innerHTML;
+
+            const li = document.createElement("li");
+            li.id = id;
+            li.innerHTML = content;
+
+            // Add backlink
+            const backlink = document.createElement("a");
+            backlink.href = "#fnref:" + id.replace("fn:", "");
+            backlink.className = "footnote-backlink";
+            backlink.textContent = "↩";
+            li.appendChild(backlink);
+
+            footnotesList.appendChild(li);
+          });
+        }
+
+        // Handle initial hash navigation
+        function scrollToElement(element) {
+          if (element) {
+            const offset =
+              element.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({
+              top: offset,
+              behavior: "smooth",
+            });
+          }
+        }
+
+        if (window.location.hash) {
+          const targetElement = document.querySelector(window.location.hash);
+          if (targetElement) {
+            setTimeout(() => scrollToElement(targetElement), 0);
+          }
+        }
+      });
+    </script>
+    <script src="assets/search.js"></script>
+
+  </body>
+</html>

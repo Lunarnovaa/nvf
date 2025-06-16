@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adding Plugins</title>
+    <style>
+      /* Critical CSS to prevent sidebar flash */
+      body.sidebar-collapsed .sidebar {
+        transform: translateX(-100%);
+      }
+
+      body.sidebar-collapsed .sidebar-toggle {
+        left: 0;
+      }
+
+      body.sidebar-collapsed .sidebar-toggle svg {
+        transform: rotate(180deg);
+      }
+    </style>
+    <script>
+      // Apply sidebar state immediately before any DOM rendering
+      (function() {
+        if (localStorage.getItem("sidebar-collapsed") === "true") {
+          document.documentElement.classList.add("sidebar-collapsed");
+          document.body.classList.add("sidebar-collapsed");
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="assets/style.css" />
+    
+    <script defer src="assets/search.js"></script>
+    
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="header-left">
+          <h1 class="site-title"><a href="index.html">nvf</a></h1>
+        </div>
+        <nav class="header-nav">
+          <ul>
+            <li ><a href="options.html">Options</a></li>
+            
+            <li><a href="search.html">Search</a></li>
+            
+          </ul>
+        </nav>
+        
+        <div class="search-container">
+          <input type="text" id="search-input" placeholder="Search..." />
+          <div id="search-results" class="search-results"></div>
+        </div>
+        
+      </header>
+
+      <div class="layout">
+        <div class="sidebar-toggle" aria-label="Toggle sidebar">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+          >
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+          </svg>
+        </div>
+        <nav class="sidebar">
+          <div class="docs-nav">
+            <h2>Documents</h2>
+            <ul>
+              <li><a href="installation/custom-configuration.html">Standalone Installation</a></li>
+<li><a href="installation/modules.html">Module Installation</a></li>
+<li><a href="installation/standalone/nixos.html">Standalone Installation on NixOS</a></li>
+<li><a href="installation/standalone/home-manager.html">Standalone Installation on Home-Manager</a></li>
+<li><a href="installation/modules/nixos.html">NixOS Module</a></li>
+<li><a href="installation/modules/home-manager.html">Home-Manager Module</a></li>
+<li><a href="quirks.html">Known Issues and Quirks</a></li>
+<li><a href="configuring.html">Configuring nvf</a></li>
+<li><a href="tips.html">Helpful Tips</a></li>
+<li><a href="try-it-out.html">Try it out</a></li>
+<li><a href="options.html">nvf Configuration Options</a></li>
+<li><a href="quirks/nodejs.html">NodeJS</a></li>
+<li><a href="configuring/languages.html">Language Support</a></li>
+<li><a href="configuring/autocmds.html">Autocommands and Autogroups</a></li>
+<li><a href="configuring/custom-package.html">Custom Neovim Package</a></li>
+<li><a href="configuring/overriding-plugins.html">Overriding plugins</a></li>
+<li><a href="configuring/languages/lsp.html">LSP Custom Packages/Command</a></li>
+<li><a href="configuring/custom-plugins.html">Custom Plugins</a></li>
+<li><a href="configuring/dag-entries.html">DAG entries in nvf</a></li>
+<li><a href="configuring/dags.html">Using DAGs</a></li>
+<li><a href="configuring/custom-plugins/non-lazy-method.html">Non-lazy Method</a></li>
+<li><a href="configuring/custom-plugins/configuring.html">Configuring</a></li>
+<li><a href="configuring/custom-plugins/legacy-method.html">Legacy Method</a></li>
+<li><a href="configuring/custom-plugins/lazy-method.html">Lazy Method</a></li>
+<li><a href="hacking/additional-plugins.html">Adding Plugins</a></li>
+<li><a href="hacking/getting-started.html">Getting Started</a></li>
+<li><a href="hacking/guidelines.html">Guidelines</a></li>
+<li><a href="hacking/testing.html">Testing Changes</a></li>
+<li><a href="hacking/keybinds.html">Keybinds</a></li>
+<li><a href="installation.html">Installing nvf</a></li>
+<li><a href="manual.html">nvf manual</a></li>
+<li><a href="hacking.html">Hacking nvf</a></li>
+<li><a href="tips/debugging-nvf.html">Debugging nvf</a></li>
+<li><a href="tips/offline-docs.html">Offline Documentation</a></li>
+<li><a href="tips/plugin-sources.html">Adding Plugins From Different Sources</a></li>
+<li><a href="tips/pure-lua-config.html">Pure Lua Configuration</a></li>
+<li><a href="preface.html">Preface</a></li>
+<li><a href="search.html">Search</a></li>
+
+            </ul>
+          </div>
+
+          <div class="toc">
+            <h2>Contents</h2>
+            <ul class="toc-list">
+              <li><a href="#sec-additional-plugins">Adding Plugins</a>
+<ul><li><a href="#sec-modular-setup-options">Modular setup options</a>
+<li><a href="#sec-details-of-toluaobject">Details of toLuaObject</a>
+<li><a href="#sec-lazy-plugins">Lazy plugins</a>
+</li></ul></li>
+            </ul>
+          </div>
+        </nav>
+
+        <main class="content">
+          <h1 id="sec-additional-plugins">Adding Plugins</h1>
+<p>To add a new Neovim plugin, use <code>npins</code></p>
+<p>Use:</p>
+<p><code>nix-shell -p npins</code> or <code>nix shell nixpkgs#npins</code></p>
+<p>Then run:</p>
+<p><code>npins add --name &lt;plugin name&gt; github &lt;owner&gt; &lt;repo&gt; -b &lt;branch&gt;</code></p>
+<p>Be sure to replace any non-alphanumeric characters with <code>-</code> for <code>--name</code></p>
+<p>For example</p>
+<p><code>npins add --name lazydev-nvim github folke lazydev.nvim -b main</code></p>
+<p>You can now reference this plugin as a <strong>string</strong>.</p>
+<pre style="background-color:#ffffff;">
+<span style="color:#323232;">config</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">vim</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">startPlugins </span><span style="background-color:#f5f5f5;font-weight:bold;color:#b52a1d;">=</span><span style="color:#323232;"> [</span><span style="color:#183691;">&quot;lazydev-nvim&quot;</span><span style="color:#323232;">]</span><span style="background-color:#f5f5f5;font-weight:bold;color:#b52a1d;">;</span><span style="color:#323232;">
+</span></pre>
+<h2 id="sec-modular-setup-options">Modular setup options</h2>
+<p>Most plugins is initialized with a call to <code>require('plugin').setup({...})</code>.</p>
+<p>We use a special function that lets you easily add support for such setup
+options in a modular way: <code>mkPluginSetupOption</code>.</p>
+<p>Once you have added the source of the plugin as shown above, you can define the
+setup options like this:</p>
+<pre style="background-color:#ffffff;">
+<span style="font-style:italic;color:#969896;"># in modules/.../your-plugin/your-plugin.nix
+</span><span style="color:#323232;">
+</span><span style="color:#323232;">{lib</span><span style="font-weight:bold;color:#a71d5d;">, ...</span><span style="color:#323232;">}:
+</span><span style="font-weight:bold;color:#a71d5d;">let
+</span><span style="color:#323232;">  </span><span style="font-weight:bold;color:#a71d5d;">inherit </span><span style="color:#323232;">(lib</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">types) </span><span style="color:#795da3;">bool int</span><span style="color:#323232;">;
+</span><span style="color:#323232;">  </span><span style="font-weight:bold;color:#a71d5d;">inherit </span><span style="color:#323232;">(lib</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">nvim</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">types) </span><span style="color:#795da3;">mkPluginSetupOption</span><span style="color:#323232;">;
+</span><span style="font-weight:bold;color:#a71d5d;">in </span><span style="color:#323232;">{
+</span><span style="color:#323232;">  </span><span style="color:#795da3;">options</span><span style="color:#323232;">.</span><span style="color:#795da3;">vim</span><span style="color:#323232;">.</span><span style="color:#795da3;">your-plugin </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">{
+</span><span style="color:#323232;">    </span><span style="color:#795da3;">setupOpts </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">mkPluginSetupOption </span><span style="color:#183691;">&quot;plugin name&quot; </span><span style="color:#323232;">{
+</span><span style="color:#323232;">      </span><span style="color:#795da3;">enable_feature_a </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">mkOption {
+</span><span style="color:#323232;">        </span><span style="color:#795da3;">type </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">bool;
+</span><span style="color:#323232;">        </span><span style="color:#795da3;">default </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#0086b3;">false</span><span style="color:#323232;">;
+</span><span style="color:#323232;">        </span><span style="font-style:italic;color:#969896;"># ...
+</span><span style="color:#323232;">      };
+</span><span style="color:#323232;">
+</span><span style="color:#323232;">      </span><span style="color:#795da3;">number_option </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">mkOption {
+</span><span style="color:#323232;">        </span><span style="color:#795da3;">type </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">int;
+</span><span style="color:#323232;">        </span><span style="color:#795da3;">default </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#0086b3;">3</span><span style="color:#323232;">;
+</span><span style="color:#323232;">        </span><span style="font-style:italic;color:#969896;"># ...
+</span><span style="color:#323232;">      };
+</span><span style="color:#323232;">    };
+</span><span style="color:#323232;">  };
+</span><span style="color:#323232;">}
+</span></pre>
+<pre style="background-color:#ffffff;">
+<span style="font-style:italic;color:#969896;"># in modules/.../your-plugin/config.nix
+</span><span style="color:#323232;">{lib</span><span style="font-weight:bold;color:#a71d5d;">, </span><span style="color:#323232;">config</span><span style="font-weight:bold;color:#a71d5d;">, ...</span><span style="color:#323232;">}:
+</span><span style="font-weight:bold;color:#a71d5d;">let
+</span><span style="color:#323232;">  </span><span style="color:#795da3;">cfg </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">config</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">vim</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">your-plugin;
+</span><span style="font-weight:bold;color:#a71d5d;">in </span><span style="color:#323232;">{
+</span><span style="color:#323232;">  </span><span style="color:#795da3;">vim</span><span style="color:#323232;">.</span><span style="color:#795da3;">luaConfigRC </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">lib</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">nvim</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">dag</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">entryAnywhere </span><span style="color:#183691;">&#39;&#39;
+</span><span style="color:#183691;">    require(&#39;plugin-name&#39;).setup(${</span><span style="color:#323232;">lib</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">nvim</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">lua</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">toLuaObject cfg</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">setupOpts</span><span style="color:#183691;">})
+</span><span style="color:#183691;">  &#39;&#39;</span><span style="color:#323232;">;
+</span><span style="color:#323232;">}
+</span></pre>
+<p>This above config will result in this lua script:</p>
+<pre style="background-color:#ffffff;">
+<span style="color:#62a35c;">require</span><span style="color:#323232;">(</span><span style="color:#183691;">&#39;plugin-name&#39;</span><span style="color:#323232;">).setup({
+</span><span style="color:#323232;">  </span><span style="color:#183691;">enable_feature_a </span><span style="color:#323232;">= </span><span style="color:#0086b3;">false</span><span style="color:#323232;">,
+</span><span style="color:#323232;">  </span><span style="color:#183691;">number_option </span><span style="color:#323232;">= </span><span style="color:#0086b3;">3</span><span style="color:#323232;">,
+</span><span style="color:#323232;">})
+</span></pre>
+<p>Now users can set any of the pre-defined option field, and can also add their
+own fields!</p>
+<pre style="background-color:#ffffff;">
+<span style="font-style:italic;color:#969896;"># in user&#39;s config
+</span><span style="color:#323232;">{
+</span><span style="color:#323232;">  </span><span style="color:#795da3;">vim</span><span style="color:#323232;">.</span><span style="color:#795da3;">your-plugin</span><span style="color:#323232;">.</span><span style="color:#795da3;">setupOpts </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">{
+</span><span style="color:#323232;">    </span><span style="color:#795da3;">enable_feature_a </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#0086b3;">true</span><span style="color:#323232;">;
+</span><span style="color:#323232;">    </span><span style="color:#795da3;">number_option </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#0086b3;">4</span><span style="color:#323232;">;
+</span><span style="color:#323232;">    </span><span style="color:#795da3;">another_field </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#183691;">&quot;hello&quot;</span><span style="color:#323232;">;
+</span><span style="color:#323232;">    </span><span style="color:#795da3;">size </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">{ </span><span style="font-style:italic;color:#969896;"># nested fields work as well
+</span><span style="color:#323232;">      </span><span style="color:#795da3;">top </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#0086b3;">10</span><span style="color:#323232;">;
+</span><span style="color:#323232;">    };
+</span><span style="color:#323232;">  };
+</span><span style="color:#323232;">}
+</span></pre>
+<h2 id="sec-details-of-toluaobject">Details of toLuaObject</h2>
+<p>As you've seen above, <code>toLuaObject</code> is used to convert our nix attrSet
+<a href="options.html#option-cfg-setupOpts" class="option-reference"><code>cfg.setupOpts</code></a>, into a lua table. Here are some rules of the conversion:</p>
+<ol>
+<li>nix <code>null</code> converts to lua <code>nil</code></li>
+<li>number and strings convert to their lua counterparts</li>
+<li>nix attrSet/list convert into lua tables</li>
+<li>you can write raw lua code using <a href="options.html#option-lib-generators-mkLuaInline" class="option-reference"><code>lib.generators.mkLuaInline</code></a>. This function
+is part of nixpkgs.</li>
+</ol>
+<p>Example:</p>
+<pre style="background-color:#ffffff;">
+<span style="color:#323232;">vim</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">your-plugin</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">setupOpts </span><span style="background-color:#f5f5f5;font-weight:bold;color:#b52a1d;">=</span><span style="color:#323232;"> {
+</span><span style="color:#323232;">  </span><span style="color:#795da3;">on_init </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">lib</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">generators</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">mkLuaInline </span><span style="color:#183691;">&#39;&#39;
+</span><span style="color:#183691;">    function()
+</span><span style="color:#183691;">      print(&#39;we can write lua!&#39;)
+</span><span style="color:#183691;">    end
+</span><span style="color:#183691;">  &#39;&#39;</span><span style="color:#323232;">;
+</span><span style="color:#323232;">}
+</span></pre>
+<h2 id="sec-lazy-plugins">Lazy plugins</h2>
+<p>If the plugin can be lazy-loaded, <a href="options.html#option-vim-lazy-plugins" class="option-reference"><code>vim.lazy.plugins</code></a> should be used to add it.
+Lazy plugins are managed by <a href="options.html#option-lz-n" class="option-reference"><code>lz.n</code></a>.</p>
+<pre style="background-color:#ffffff;">
+<span style="font-style:italic;color:#969896;"># in modules/.../your-plugin/config.nix
+</span><span style="color:#323232;">{lib</span><span style="font-weight:bold;color:#a71d5d;">, </span><span style="color:#323232;">config</span><span style="font-weight:bold;color:#a71d5d;">, ...</span><span style="color:#323232;">}:
+</span><span style="font-weight:bold;color:#a71d5d;">let
+</span><span style="color:#323232;">  </span><span style="color:#795da3;">cfg </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">config</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">vim</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">your-plugin;
+</span><span style="font-weight:bold;color:#a71d5d;">in </span><span style="color:#323232;">{
+</span><span style="color:#323232;">  </span><span style="color:#795da3;">vim</span><span style="color:#323232;">.</span><span style="color:#795da3;">lazy</span><span style="color:#323232;">.</span><span style="color:#795da3;">plugins</span><span style="color:#323232;">.</span><span style="color:#795da3;">your-plugin </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">{
+</span><span style="color:#323232;">    </span><span style="font-style:italic;color:#969896;"># instead of vim.startPlugins, use this:
+</span><span style="color:#323232;">    </span><span style="color:#795da3;">package </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#183691;">&quot;your-plugin&quot;</span><span style="color:#323232;">;
+</span><span style="color:#323232;">
+</span><span style="color:#323232;">    </span><span style="font-style:italic;color:#969896;"># if your plugin uses the `require(&#39;your-plugin&#39;).setup{...}` pattern
+</span><span style="color:#323232;">    </span><span style="color:#795da3;">setupModule </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#183691;">&quot;your-plugin&quot;</span><span style="color:#323232;">;
+</span><span style="color:#323232;">    </span><span style="font-weight:bold;color:#a71d5d;">inherit </span><span style="color:#323232;">(cfg) </span><span style="color:#795da3;">setupOpts</span><span style="color:#323232;">;
+</span><span style="color:#323232;">
+</span><span style="color:#323232;">    </span><span style="font-style:italic;color:#969896;"># events that trigger this plugin to be loaded
+</span><span style="color:#323232;">    </span><span style="color:#795da3;">event </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">[</span><span style="color:#183691;">&quot;DirChanged&quot;</span><span style="color:#323232;">];
+</span><span style="color:#323232;">    </span><span style="color:#795da3;">cmd </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">[</span><span style="color:#183691;">&quot;YourPluginCommand&quot;</span><span style="color:#323232;">];
+</span><span style="color:#323232;">
+</span><span style="color:#323232;">    </span><span style="font-style:italic;color:#969896;"># keymaps
+</span><span style="color:#323232;">    </span><span style="color:#795da3;">keys </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">[
+</span><span style="color:#323232;">      </span><span style="font-style:italic;color:#969896;"># we&#39;ll cover this in detail in the keymaps section
+</span><span style="color:#323232;">      {
+</span><span style="color:#323232;">        </span><span style="color:#795da3;">key </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#183691;">&quot;&lt;leader&gt;d&quot;</span><span style="color:#323232;">;
+</span><span style="color:#323232;">        </span><span style="color:#795da3;">mode </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#183691;">&quot;n&quot;</span><span style="color:#323232;">;
+</span><span style="color:#323232;">        </span><span style="color:#795da3;">action </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#183691;">&quot;:YourPluginCommand&quot;</span><span style="color:#323232;">;
+</span><span style="color:#323232;">      }
+</span><span style="color:#323232;">    ];
+</span><span style="color:#323232;">  };
+</span><span style="background-color:#f5f5f5;font-weight:bold;color:#b52a1d;">;</span><span style="color:#323232;">
+</span><span style="color:#323232;">}
+</span></pre>
+<p>This results in the following lua code:</p>
+<pre style="background-color:#ffffff;">
+<span style="color:#62a35c;">require</span><span style="color:#323232;">(</span><span style="color:#183691;">&#39;lz.n&#39;</span><span style="color:#323232;">).load({
+</span><span style="color:#323232;">  {
+</span><span style="color:#323232;">    </span><span style="color:#183691;">&quot;name-of-your-plugin&quot;</span><span style="color:#323232;">,
+</span><span style="color:#323232;">    </span><span style="font-weight:bold;color:#795da3;">after </span><span style="color:#323232;">= </span><span style="font-weight:bold;color:#a71d5d;">function</span><span style="color:#323232;">()
+</span><span style="color:#323232;">      </span><span style="color:#62a35c;">require</span><span style="color:#323232;">(</span><span style="color:#183691;">&#39;your-plugin&#39;</span><span style="color:#323232;">).setup({</span><span style="font-style:italic;color:#969896;">--[[ your setupOpts ]]</span><span style="color:#323232;">})
+</span><span style="color:#323232;">    </span><span style="font-weight:bold;color:#a71d5d;">end</span><span style="color:#323232;">,
+</span><span style="color:#323232;">
+</span><span style="color:#323232;">    </span><span style="color:#183691;">event </span><span style="color:#323232;">= {</span><span style="color:#183691;">&quot;DirChanged&quot;</span><span style="color:#323232;">},
+</span><span style="color:#323232;">    </span><span style="color:#183691;">cmd </span><span style="color:#323232;">= {</span><span style="color:#183691;">&quot;YourPluginCommand&quot;</span><span style="color:#323232;">},
+</span><span style="color:#323232;">    </span><span style="color:#183691;">keys </span><span style="color:#323232;">= {
+</span><span style="color:#323232;">      {</span><span style="color:#183691;">&quot;&lt;leader&gt;d&quot;</span><span style="color:#323232;">, </span><span style="color:#183691;">&quot;:YourPluginCommand&quot;</span><span style="color:#323232;">, </span><span style="color:#183691;">mode </span><span style="color:#323232;">= {</span><span style="color:#183691;">&quot;n&quot;</span><span style="color:#323232;">}},
+</span><span style="color:#323232;">    },
+</span><span style="color:#323232;">  }
+</span><span style="color:#323232;">})
+</span></pre>
+<p>A full list of options can be found
+[here](<a href="https://notashelf.github.io/nvf/options.html#opt-vim.lazy.plugins">https://notashelf.github.io/nvf/options.html#opt-vim.lazy.plugins</a></p>
+
+          <div class="footnotes-container">
+            <!-- Footnotes will be appended here -->
+          </div>
+        </main>
+      </div>
+
+      <footer>
+        <p></p>
+      </footer>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Sidebar Toggle functionality
+        const toggle = document.querySelector(".sidebar-toggle");
+
+        if (toggle) {
+          toggle.addEventListener("click", function () {
+            document.body.classList.toggle("sidebar-collapsed");
+
+            // Save state to localStorage
+            const isCollapsed = document.body.classList.contains("sidebar-collapsed");
+            localStorage.setItem("sidebar-collapsed", isCollapsed);
+          });
+        }
+
+        // Make headings clickable for anchor links
+        const content = document.querySelector(".content");
+        const headings = content.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        headings.forEach(function (heading) {
+          // Make sure all headings have IDs
+          if (!heading.id) {
+            heading.id = heading.textContent
+              .toLowerCase()
+              .replace(/[^\w\s-]/g, "")
+              .replace(/[\s-]+/g, "-")
+              .trim();
+
+            if (!heading.id) {
+              heading.id =
+                "section-" + Math.random().toString(36).substring(2, 9);
+            }
+          }
+
+          // Make the entire heading clickable
+          heading.addEventListener("click", function (e) {
+            const id = this.id;
+            history.pushState(null, null, "#" + id);
+
+            // Scroll with offset
+            const offset =
+              this.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({
+              top: offset,
+              behavior: "smooth",
+            });
+          });
+        });
+
+        // Process footnotes
+        const footnoteContainer = document.querySelector(
+          ".footnotes-container",
+        );
+
+        // Find all footnote references and create a footnotes section
+        const footnoteRefs = content.querySelectorAll('a[href^="#fn"]');
+        if (footnoteRefs.length > 0) {
+          const footnotesDiv = document.createElement("div");
+          footnotesDiv.className = "footnotes";
+
+          const footnotesHeading = document.createElement("h2");
+          footnotesHeading.textContent = "Footnotes";
+          footnotesDiv.appendChild(footnotesHeading);
+
+          const footnotesList = document.createElement("ol");
+          footnoteContainer.appendChild(footnotesDiv);
+          footnotesDiv.appendChild(footnotesList);
+
+          // Add footnotes
+          document.querySelectorAll(".footnote").forEach((footnote) => {
+            const id = footnote.id;
+            const content = footnote.innerHTML;
+
+            const li = document.createElement("li");
+            li.id = id;
+            li.innerHTML = content;
+
+            // Add backlink
+            const backlink = document.createElement("a");
+            backlink.href = "#fnref:" + id.replace("fn:", "");
+            backlink.className = "footnote-backlink";
+            backlink.textContent = "↩";
+            li.appendChild(backlink);
+
+            footnotesList.appendChild(li);
+          });
+        }
+
+        // Handle initial hash navigation
+        function scrollToElement(element) {
+          if (element) {
+            const offset =
+              element.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({
+              top: offset,
+              behavior: "smooth",
+            });
+          }
+        }
+
+        if (window.location.hash) {
+          const targetElement = document.querySelector(window.location.hash);
+          if (targetElement) {
+            setTimeout(() => scrollToElement(targetElement), 0);
+          }
+        }
+      });
+    </script>
+    <script src="assets/search.js"></script>
+
+  </body>
+</html>
