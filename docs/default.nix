@@ -4,8 +4,6 @@
   pkgs,
   lib,
 }: let
-  inherit ((lib.importJSON ../release.json)) release;
-
   nvimModuleOptionsJSON =
     (pkgs.nixosOptionsDoc {
       variablelistId = "nvf-options";
@@ -91,6 +89,8 @@
             opt.declarations;
         };
     }).optionsJSON;
+
+  nativeBuildInputs = [inputs'.ndg.packages.ndg];
 in {
   "options.json" =
     pkgs.runCommand "options.json" {
@@ -106,39 +106,32 @@ in {
         "$out/share/doc/nvf"
     '';
 
-  nvfDocs = pkgs.runCommandLocal "nvf-docs" {nativeBuildInputs = [inputs'.ndg.packages.ndg];} ''
+  nvfDocs = pkgs.runCommandLocal "nvf-docs" {inherit nativeBuildInputs;} ''
     mkdir -p $out
 
-    ndg \
-      --verbose html \
+    ndg --verbose html \
       --title "nvf" \
       --jobs $NIX_BUILD_CORES \
       --module-options ${nvimModuleOptionsJSON}/share/doc/nixos/options.json \
       --options-depth 2 \
       --generate-search true \
       --highlight-code true \
-      --input-dir ${./docs} \
+      --input-dir ${./docs/manual/manual.md} \
       --output-dir "$out"
   '';
 
-  manPages =
-    pkgs.runCommand "nvf-reference-manpage" {
-      nativebuildInputs = [
-        pkgs.buildPackages.installShellFiles
-        pkgs.nixos-render-docs
-      ];
-      allowedReferences = ["out"];
-    } ''
-        # Generate manpages.
-        mkdir -p $out/share/man/{man5,man1}
+  manPages = pkgs.runCommandLocal "nvf-reference-manpage" {inherit nativeBuildInputs;} ''
+    # Generate manpages.
+    mkdir -p $out/share/man/{man5,man1}
 
-      nixos-render-docs -j $NIX_BUILD_CORES options manpage \
-        --revision ${release} \
-        --header ${./man/header.5} \
-        --footer ${./man/footer.5} \
-        ${nvimModuleOptionsJSON}/share/doc/nixos/options.json \
-        $out/share/man/man5/nvf.5
+    ndg --verbose manpage \
+      --title "nvf" \
+      --section 5 \
+      --module-options ${nvimModuleOptionsJSON}/share/doc/nixos/options.json \
+      #--header ${builtins.readFile ./man/header.5} \
+      #--footer ${builtins.readFile ./man/footer.5} \
+      --output-file "$out/share/man/man5/nvf.5"
 
-      cp ${./man/nvf.1} $out/share/man/man1/nvf.1
-    '';
+    cp ${./man/nvf.1} $out/share/man/man1/nvf.1
+  '';
 }
