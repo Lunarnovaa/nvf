@@ -42,7 +42,7 @@
         pkgs.testers.lycheeLinkCheck {
           inherit site;
           remap = {
-            "https://lunarnovaa.github.io/nvf/" = site;
+            "https://notashelf.github.io/nvf/" = site;
           };
           extraConfig = {
             exclude = [];

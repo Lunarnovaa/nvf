@@ -370,7 +370,7 @@ configure **nvf**.
 > [!NOTE]
 > nvf exposes a lot of options, most of which are not referenced in the
 > installation sections of the manual. You may find all available options in the
-> [appendix](https://lunarnovaa.github.io/nvf/options)
+> [appendix](https://notashelf.github.io/nvf/options)
 
 #### Home-Manager Module {#ch-hm-module}
 
@@ -459,7 +459,7 @@ configure **nvf**.
 > [!NOTE]
 > **nvf** exposes a lot of options, most of which are not referenced in the
 > installation sections of the manual. You may find all available options in the
-> [appendix](https://lunarnovaa.github.io/nvf/options)
+> [appendix](https://notashelf.github.io/nvf/options)
 
 ## Configuring nvf {#ch-configuring}
 
