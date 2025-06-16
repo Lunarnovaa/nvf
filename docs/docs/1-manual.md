@@ -98,11 +98,6 @@ may be done on any system that has the Nix package manager or the appropriate
 modules for NixOS and home-manager as described in the
 [module installation section].
 
-```{=include=} chapters
-installation/custom-configuration.md
-installation/modules.md
-```
-
 ### Standalone Installation {#ch-standalone-installation}
 
 It is possible to install nvf without depending on NixOS or Home-Manager as the
@@ -165,11 +160,6 @@ The above setup will allow to set up nvf as a standalone flake, which you can
 build independently from your system configuration while also possibly sharing
 it with others. The next two chapters will detail specific usage of such a setup
 for a package output in the context of NixOS or Home-Manager installation.
-
-```{=include=} chapters
-standalone/nixos.md
-standalone/home-manager.md
-```
 
 #### Standalone Installation on NixOS {#ch-standalone-nixos}
 
@@ -294,11 +284,6 @@ the default theme enabled. You may use other options inside `config.vim` in
 The below chapters will describe installing nvf as NixOS and Home-Manager
 modules. Note that those methods are mutually exclusive, and will likely cause
 path collisions if used simultaneously.
-
-```{=include=} chapters
-modules/nixos.md
-modules/home-manager.md
-```
 
 #### NixOS Module {#ch-nixos-module}
 
@@ -488,16 +473,6 @@ more advanced or unusual configuration options supported by nvf.
 Note that this section does not cover module _options_. For an overview of all
 module options provided by nvf, please visit the [appendix](/options.html)
 
-```{=include=} chapters
-configuring/custom-package.md
-configuring/custom-plugins.md
-configuring/overriding-plugins.md
-configuring/languages.md
-configuring/dags.md
-configuring/dag-entries.md
-configuring/autocmds.md
-```
-
 ### Custom Neovim Package {#ch-custom-package}
 
 As of v0.5, you may now specify the Neovim package that will be wrapped with
@@ -548,13 +523,6 @@ as a module.
 As you would configure a cloned plugin, you must configure the new plugins that
 you've added to `startPlugins.` **nvf** provides multiple ways of configuring
 any custom plugins that you might have added to your configuration.
-
-```{=include=} sections
-custom-plugins/configuring.md
-custom-plugins/lazy-method.md
-custom-plugins/non-lazy-method.md
-custom-plugins/legacy-method.md
-```
 
 ##### Configuring {#sec-configuring-plugins}
 
@@ -843,10 +811,6 @@ formatting to diagnostics. The following languages have sections under the
 
 Adding support for more languages, and improving support for existing ones are
 great places where you can contribute with a PR.
-
-```{=include=} sections
-languages/lsp.md
-```
 
 #### LSP Custom Packages/Command {#sec-languages-custom-lsp-packages}
 
@@ -1204,13 +1168,6 @@ advanced" for some users. We will cover basic debugging steps, offline
 documentation, configuring **nvf** with pure Lua and using custom plugin sources
 in **nvf** in this section. For general configuration tips, please see previous
 chapters.
-
-```{=include=} chapters
-tips/debugging-nvf.md
-tips/offline-docs.md
-tips/pure-lua-config.md
-tips/plugin-sources.md
-```
 
 ### Debugging nvf {#sec-debugging-nvf}
 
