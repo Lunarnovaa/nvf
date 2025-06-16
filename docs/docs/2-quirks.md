@@ -1,6 +1,13 @@
-# NodeJS {#ch-quirks-nodejs}
+# Known Issues and Quirks {#ch-known-issues-quirks}
 
-## eslint-plugin-prettier {#sec-eslint-plugin-prettier}
+At times, certain plugins and modules may refuse to play nicely with your setup,
+be it a result of generating Lua from Nix, or the state of packaging. This page,
+in turn, will list any known modules or plugins that are known to misbehave, and
+possible workarounds that you may apply.
+
+## NodeJS {#ch-quirks-nodejs}
+
+### eslint-plugin-prettier {#sec-eslint-plugin-prettier}
 
 When working with NodeJS, everything works as expected, but some projects have
 settings that can fool nvf.
