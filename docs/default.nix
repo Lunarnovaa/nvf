@@ -116,7 +116,6 @@ in {
       --module-options ${nvimModuleOptionsJSON}/share/doc/nixos/options.json \
       --options-depth 2 \
       --generate-search true \
-      --highlight-code true \
       --input-dir ${./docs} \
       --output-dir "$out"
   '';
