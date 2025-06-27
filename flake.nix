@@ -80,7 +80,7 @@
     flake-utils.url = "github:numtide/flake-utils";
     systems.url = "github:nix-systems/default";
     ndg = {
-      url = "github:feel-co/ndg";
+      url = "github:feel-co/ndg?ref=colmark";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
