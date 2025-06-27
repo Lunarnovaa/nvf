@@ -3,46 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nvf manual</title>
-    <style>
-      /* Critical CSS to prevent sidebar flash */
-      body.sidebar-collapsed .sidebar {
-        transform: translateX(-100%);
-      }
-
-      body.sidebar-collapsed .sidebar-toggle {
-        left: 0;
-      }
-
-      body.sidebar-collapsed .sidebar-toggle svg {
-        transform: rotate(180deg);
-      }
-    </style>
+    <title>nvf manual {#nvf-manual}</title>
     <script>
-      // Apply sidebar state immediately before any DOM rendering
-      (function() {
+      // Apply sidebar state immediately to prevent flash
+      (function () {
         if (localStorage.getItem("sidebar-collapsed") === "true") {
           document.documentElement.classList.add("sidebar-collapsed");
-          document.body.classList.add("sidebar-collapsed");
         }
       })();
     </script>
-    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="../assets/style.css" />
+    <script defer src="../assets/main.js"></script>
     
-    <script defer src="assets/search.js"></script>
+    <script defer src="../assets/search.js"></script>
     
   </head>
   <body>
     <div class="container">
       <header>
         <div class="header-left">
-          <h1 class="site-title"><a href="index.html">nvf</a></h1>
+          <h1 class="site-title">
+            <a href="../index.html">nvf</a>
+          </h1>
         </div>
         <nav class="header-nav">
           <ul>
-            <li ><a href="options.html">Options</a></li>
+            <li >
+              <a href="../options.html">Options</a>
+            </li>
             
-            <li><a href="search.html">Search</a></li>
+            <li><a href="../search.html">Search</a></li>
             
           </ul>
         </nav>
@@ -69,53 +59,53 @@
           <div class="docs-nav">
             <h2>Documents</h2>
             <ul>
-              <li><a href="release-notes/release-notes.html">Release Notes</a></li>
-<li><a href="release-notes/rl-0.5.html">Release 0.5 {#sec-release-0.5}</a></li>
-<li><a href="release-notes/rl-0.4.html">Release 0.4 {#sec-release-0.4}</a></li>
-<li><a href="release-notes/rl-0.3.html">Release 0.3 {#sec-release-0.3}</a></li>
-<li><a href="release-notes/rl-0.8.html">Release 0.8 {#sec-release-0.8}</a></li>
-<li><a href="release-notes/rl-0.1.html">Release 0.1 {#sec-release-0.1}</a></li>
-<li><a href="release-notes/rl-0.2.html">Release 0.2 {#sec-release-0.2}</a></li>
-<li><a href="release-notes/rl-0.7.html">Release 0.7 {#sec-release-0.7}</a></li>
-<li><a href="release-notes/rl-0.6.html">Release 0.6 {#sec-release-0.6}</a></li>
-<li><a href="manual/installation/custom-configuration.html">Standalone Installation</a></li>
-<li><a href="manual/installation/modules.html">Module Installation</a></li>
-<li><a href="manual/installation/standalone/nixos.html">Standalone Installation on NixOS</a></li>
-<li><a href="manual/installation/standalone/home-manager.html">Standalone Installation on Home-Manager</a></li>
-<li><a href="manual/installation/modules/nixos.html">NixOS Module</a></li>
-<li><a href="manual/installation/modules/home-manager.html">Home-Manager Module</a></li>
-<li><a href="manual/quirks.html">Known Issues and Quirks</a></li>
-<li><a href="manual/configuring.html">Configuring nvf</a></li>
-<li><a href="manual/tips.html">Helpful Tips</a></li>
-<li><a href="manual/try-it-out.html">Try it out</a></li>
-<li><a href="manual/options.html">nvf Configuration Options</a></li>
-<li><a href="manual/quirks/nodejs.html">NodeJS</a></li>
-<li><a href="manual/configuring/languages.html">Language Support</a></li>
-<li><a href="manual/configuring/autocmds.html">Autocommands and Autogroups</a></li>
-<li><a href="manual/configuring/custom-package.html">Custom Neovim Package</a></li>
-<li><a href="manual/configuring/overriding-plugins.html">Overriding plugins</a></li>
-<li><a href="manual/configuring/languages/lsp.html">LSP Custom Packages/Command</a></li>
-<li><a href="manual/configuring/custom-plugins.html">Custom Plugins</a></li>
-<li><a href="manual/configuring/dag-entries.html">DAG entries in nvf</a></li>
-<li><a href="manual/configuring/dags.html">Using DAGs</a></li>
-<li><a href="manual/configuring/custom-plugins/non-lazy-method.html">Non-lazy Method</a></li>
-<li><a href="manual/configuring/custom-plugins/configuring.html">Configuring</a></li>
-<li><a href="manual/configuring/custom-plugins/legacy-method.html">Legacy Method</a></li>
-<li><a href="manual/configuring/custom-plugins/lazy-method.html">Lazy Method</a></li>
-<li><a href="manual/hacking/additional-plugins.html">Adding Plugins</a></li>
-<li><a href="manual/hacking/getting-started.html">Getting Started</a></li>
-<li><a href="manual/hacking/guidelines.html">Guidelines</a></li>
-<li><a href="manual/hacking/testing.html">Testing Changes</a></li>
-<li><a href="manual/hacking/keybinds.html">Keybinds</a></li>
-<li><a href="manual/installation.html">Installing nvf</a></li>
-<li><a href="manual/manual.html">nvf manual</a></li>
-<li><a href="manual/hacking.html">Hacking nvf</a></li>
-<li><a href="manual/tips/debugging-nvf.html">Debugging nvf</a></li>
-<li><a href="manual/tips/offline-docs.html">Offline Documentation</a></li>
-<li><a href="manual/tips/plugin-sources.html">Adding Plugins From Different Sources</a></li>
-<li><a href="manual/tips/pure-lua-config.html">Pure Lua Configuration</a></li>
-<li><a href="manual/preface.html">Preface</a></li>
-<li><a href="search.html">Search</a></li>
+              <li><a href="../release-notes/release-notes.html">Release Notes</a></li>
+<li><a href="../release-notes/rl-0.5.html">Release 0.5 {#sec-release-0.5}</a></li>
+<li><a href="../release-notes/rl-0.4.html">Release 0.4 {#sec-release-0.4}</a></li>
+<li><a href="../release-notes/rl-0.3.html">Release 0.3 {#sec-release-0.3}</a></li>
+<li><a href="../release-notes/rl-0.8.html">Release 0.8 {#sec-release-0.8}</a></li>
+<li><a href="../release-notes/rl-0.1.html">Release 0.1 {#sec-release-0.1}</a></li>
+<li><a href="../release-notes/rl-0.2.html">Release 0.2 {#sec-release-0.2}</a></li>
+<li><a href="../release-notes/rl-0.7.html">Release 0.7 {#sec-release-0.7}</a></li>
+<li><a href="../release-notes/rl-0.6.html">Release 0.6 {#sec-release-0.6}</a></li>
+<li><a href="../manual/installation/custom-configuration.html">Standalone Installation</a></li>
+<li><a href="../manual/installation/modules.html">Module Installation</a></li>
+<li><a href="../manual/installation/standalone/nixos.html">Standalone Installation on NixOS</a></li>
+<li><a href="../manual/installation/standalone/home-manager.html">Standalone Installation on Home-Manager</a></li>
+<li><a href="../manual/installation/modules/nixos.html">NixOS Module</a></li>
+<li><a href="../manual/installation/modules/home-manager.html">Home-Manager Module</a></li>
+<li><a href="../manual/quirks.html">Known Issues and Quirks</a></li>
+<li><a href="../manual/configuring.html">Configuring nvf</a></li>
+<li><a href="../manual/tips.html">Helpful Tips</a></li>
+<li><a href="../manual/try-it-out.html">Try it out</a></li>
+<li><a href="../manual/options.html">nvf Configuration Options</a></li>
+<li><a href="../manual/quirks/nodejs.html">NodeJS</a></li>
+<li><a href="../manual/configuring/languages.html">Language Support</a></li>
+<li><a href="../manual/configuring/autocmds.html">Autocommands and Autogroups</a></li>
+<li><a href="../manual/configuring/custom-package.html">Custom Neovim Package</a></li>
+<li><a href="../manual/configuring/overriding-plugins.html">Overriding plugins</a></li>
+<li><a href="../manual/configuring/languages/lsp.html">LSP Custom Packages/Command</a></li>
+<li><a href="../manual/configuring/custom-plugins.html">Custom Plugins</a></li>
+<li><a href="../manual/configuring/dag-entries.html">DAG entries in nvf</a></li>
+<li><a href="../manual/configuring/dags.html">Using DAGs</a></li>
+<li><a href="../manual/configuring/custom-plugins/non-lazy-method.html">Non-lazy Method</a></li>
+<li><a href="../manual/configuring/custom-plugins/configuring.html">Configuring</a></li>
+<li><a href="../manual/configuring/custom-plugins/legacy-method.html">Legacy Method</a></li>
+<li><a href="../manual/configuring/custom-plugins/lazy-method.html">Lazy Method</a></li>
+<li><a href="../manual/hacking/additional-plugins.html">Adding Plugins</a></li>
+<li><a href="../manual/hacking/getting-started.html">Getting Started</a></li>
+<li><a href="../manual/hacking/guidelines.html">Guidelines</a></li>
+<li><a href="../manual/hacking/testing.html">Testing Changes</a></li>
+<li><a href="../manual/hacking/keybinds.html">Keybinds</a></li>
+<li><a href="../manual/installation.html">Installing nvf</a></li>
+<li><a href="../manual/manual.html">nvf manual</a></li>
+<li><a href="../manual/hacking.html">Hacking nvf</a></li>
+<li><a href="../manual/tips/debugging-nvf.html">Debugging nvf</a></li>
+<li><a href="../manual/tips/offline-docs.html">Offline Documentation</a></li>
+<li><a href="../manual/tips/plugin-sources.html">Adding Plugins From Different Sources</a></li>
+<li><a href="../manual/tips/pure-lua-config.html">Pure Lua Configuration</a></li>
+<li><a href="../manual/preface.html">Preface</a></li>
+<li><a href="../search.html">Search</a></li>
 
             </ul>
           </div>
@@ -123,42 +113,172 @@
           <div class="toc">
             <h2>Contents</h2>
             <ul class="toc-list">
-              <li><a href="#nvf-manual">nvf manual</a>
-<ul><li><a href="#version-nvf-version">Version @NVF_VERSION@</a>
-</li></ul></li>
+              <li><a href="#nvf-manual">nvf manual {#nvf-manual}</a>
+<ul><li><a href="#version--nvf_version">Version @NVF_VERSION@</a>
+</ul><li><a href="#ch-preface">Preface {#ch-preface}</a>
+<ul><li><a href="#sec-what-is-it">What is nvf {#sec-what-is-it}</a>
+<li><a href="#sec-bugs-suggestions">Bugs & Suggestions {#sec-bugs-suggestions}</a>
+</ul><li><a href="#ch-try-it-out">Try it out {#ch-try-it-out}</a>
+<ul><li><a href="#sec-using-prebuilt-configs">Using Prebuilt Configs {#sec-using-prebuilt-configs}</a>
+<ul><li><a href="#sec-available-configs">Available Configurations {#sec-available-configs}</a>
+</ul></ul><li><a href="#ch-installation">Installing nvf {#ch-installation}</a>
+<li><a href="#ch-configuring">Configuring nvf {#ch-configuring}</a>
+<li><a href="#ch-helpful-tips">Helpful Tips {#ch-helpful-tips}</a>
+<li><a href="#ch-hacking">Hacking nvf {#ch-hacking}</a>
+<li><a href="#ch-known-issues-quirks">Known Issues and Quirks {#ch-known-issues-quirks}</a>
+<li><a href="#ch-options">nvf Configuration Options {#ch-options}</a>
+</li>
             </ul>
           </div>
         </nav>
 
-        <main class="content">
-          <h1 id="nvf-manual">nvf manual</h1>
-<h2>Version @NVF_VERSION@</h2>
-<pre style="background-color:#ffffff;">
-<span style="color:#323232;">preface.md
-</span><span style="color:#323232;">try-it-out.md
-</span></pre>
-<pre style="background-color:#ffffff;">
-<span style="color:#323232;">installation.md
-</span><span style="color:#323232;">configuring.md
-</span><span style="color:#323232;">tips.md
-</span></pre>
-<pre style="background-color:#ffffff;">
-<span style="color:#323232;">hacking.md
-</span></pre>
-<pre style="background-color:#ffffff;">
-<span style="color:#323232;">quirks.md
-</span></pre>
-<pre style="background-color:#ffffff;">
-<span style="color:#323232;">options.md
-</span></pre>
-<pre style="background-color:#ffffff;">
-<span style="color:#323232;">release-notes/release-notes.md
-</span></pre>
-
-          <div class="footnotes-container">
-            <!-- Footnotes will be appended here -->
-          </div>
-        </main>
+        <main class="content"><h1 id="nvf-manual"><a href="#nvf-manual-nvf-manual" aria-hidden="true" class="anchor" id="nvf-manual-nvf-manual"></a>nvf manual</h1>
+<h2><a href="#version-nvf_version" aria-hidden="true" class="anchor" id="version-nvf_version"></a>Version @NVF_VERSION@</h2>
+<h1 id="ch-preface"><a href="#preface-ch-preface" aria-hidden="true" class="anchor" id="preface-ch-preface"></a>Preface</h1>
+<h2 id="sec-what-is-it"><a href="#what-is-nvf-sec-what-is-it" aria-hidden="true" class="anchor" id="what-is-nvf-sec-what-is-it"></a>What is nvf</h2>
+<p>nvf is a highly modular, configurable, extensible and easy to use Neovim
+configuration in Nix. Designed for flexibility and ease of use, nvf allows you
+to easily configure your fully featured Neovim instance with a few lines of Nix.</p>
+<h2 id="sec-bugs-suggestions"><a href="#bugs--suggestions-sec-bugs-suggestions" aria-hidden="true" class="anchor" id="bugs--suggestions-sec-bugs-suggestions"></a>Bugs &amp; Suggestions</h2>
+<p>If you notice any issues with nvf, or this documentation, then please consider
+reporting them over at the <a href="<a href="https://github.com/notashelf/nvf/issues">https://github.com/notashelf/nvf/issues</a>">issue tracker</a>. Issues tab, in addition to the
+<a href="<a href="https://github.com/notashelf/nvf/discussions">https://github.com/notashelf/nvf/discussions</a>">discussions tab</a> is a good place as any to request new features.</p>
+<p>You may also consider submitting bugfixes, feature additions and upstreamed
+changes that you think are critical over at the <a href="<a href="https://github.com/notashelf/nvf/pulls">https://github.com/notashelf/nvf/pulls</a>">pull requests tab</a>.</p>
+<h1 id="ch-try-it-out"><a href="#try-it-out-ch-try-it-out" aria-hidden="true" class="anchor" id="try-it-out-ch-try-it-out"></a>Try it out</h1>
+<p>Thanks to the portability of Nix, you can try out nvf without actually
+installing it to your machine. Below are the commands you may run to try out
+different configurations provided by this flake. As of v0.5, two specialized
+configurations are provided:</p>
+<ul>
+<li><strong>Nix</strong> - Nix language server + simple utility plugins</li>
+<li><strong>Maximal</strong> - Variable language servers + utility and decorative plugins</li>
+</ul>
+<p>You may try out any of the provided configurations using the <code>nix run</code> command
+on a system where Nix is installed.</p>
+<pre><code class="language-bash">$ cachix use nvf                   # Optional: it'll save you CPU resources and time
+$ nix run github:notashelf/nvf#nix # will run the default minimal configuration
+</code></pre>
+<p>Do keep in mind that this is <strong>susceptible to garbage collection</strong> meaning it
+will be removed from your Nix store once you garbage collect.</p>
+<h2 id="sec-using-prebuilt-configs"><a href="#using-prebuilt-configs-sec-using-prebuilt-configs" aria-hidden="true" class="anchor" id="using-prebuilt-configs-sec-using-prebuilt-configs"></a>Using Prebuilt Configs</h2>
+<pre><code class="language-bash">$ nix run github:notashelf/nvf#nix
+$ nix run github:notashelf/nvf#maximal
+</code></pre>
+<h3 id="sec-available-configs"><a href="#available-configurations-sec-available-configs" aria-hidden="true" class="anchor" id="available-configurations-sec-available-configs"></a>Available Configurations</h3>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The below configurations are provided for demonstration purposes, and are
+<strong>not</strong> designed to be installed as is. You may</p>
+<h4 id="sec-configs-nix">Nix</h4>
+<p><code>Nix</code> configuration by default provides LSP/diagnostic support for Nix alongside
+a set of visual and functional plugins. By running <code>nix run .#</code>, which is the
+default package, you will build Neovim with this config.</p>
+<pre><code class="language-bash">$ nix run github:notashelf/nvf#nix test.nix
+</code></pre>
+<p>This command will start Neovim with some opinionated plugin configurations, and
+is designed specifically for Nix. the <code>nix</code> configuration lets you see how a
+fully configured Neovim setup <em>might</em> look like without downloading too many
+packages or shell utilities.</p>
+<h4 id="sec-configs-maximal">Maximal</h4>
+<p><code>Maximal</code> is the ultimate configuration that will enable support for more
+commonly used language as well as additional complementary plugins. Keep in
+mind, however, that this will pull a lot of dependencies.</p>
+<pre><code class="language-bash">$ nix run github:notashelf/nvf#maximal -- test.nix
+</code></pre>
+<p>It uses the same configuration template with the <a href="#sec-configs-nix">Nix</a>
+configuration, but supports many more languages, and enables more utility,
+companion or fun plugins.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Running the maximal config will download <em>a lot</em> of packages as it is
+downloading language servers, formatters, and more.</p>
+</div>
+<h1 id="ch-installation"><a href="#installing-nvf-ch-installation" aria-hidden="true" class="anchor" id="installing-nvf-ch-installation"></a>Installing nvf</h1>
+<p>There are multiple ways of installing nvf on your system. You may either choose
+the standalone installation method, which does not depend on a module system and
+may be done on any system that has the Nix package manager or the appropriate
+modules for NixOS and home-manager as described in the
+<a href="#ch-module-installation">module installation section</a>.</p>
+<pre><code class="language-{=include=}">installation/custom-configuration.md
+installation/modules.md
+</code></pre>
+<h1 id="ch-configuring"><a href="#configuring-nvf-ch-configuring" aria-hidden="true" class="anchor" id="configuring-nvf-ch-configuring"></a>Configuring nvf</h1>
+<p>nvf allows for <em>very</em> extensive configuration in Neovim through the Nix module
+interface. The below chapters describe several of the options exposed in nvf for
+your convenience. You might also be interested in the <a href="#ch-helpful-tips">helpful tips section</a> for
+more advanced or unusual configuration options supported by nvf.</p>
+<p>Note that this section does not cover module <em>options</em>. For an overview of all
+module options provided by nvf, please visit the <a href="/options.html">appendix</a></p>
+<pre><code class="language-{=include=}">configuring/custom-package.md
+configuring/custom-plugins.md
+configuring/overriding-plugins.md
+configuring/languages.md
+configuring/dags.md
+configuring/dag-entries.md
+configuring/autocmds.md
+</code></pre>
+<h1 id="ch-helpful-tips"><a href="#helpful-tips-ch-helpful-tips" aria-hidden="true" class="anchor" id="helpful-tips-ch-helpful-tips"></a>Helpful Tips</h1>
+<p>This section provides helpful tips that may be considered &quot;unorthodox&quot; or &quot;too
+advanced&quot; for some users. We will cover basic debugging steps, offline
+documentation, configuring <strong>nvf</strong> with pure Lua and using custom plugin sources
+in <strong>nvf</strong> in this section. For general configuration tips, please see previous
+chapters.</p>
+<pre><code class="language-{=include=}">tips/debugging-nvf.md
+tips/offline-docs.md
+tips/pure-lua-config.md
+tips/plugin-sources.md
+</code></pre>
+<h1 id="ch-hacking"><a href="#hacking-nvf-ch-hacking" aria-hidden="true" class="anchor" id="hacking-nvf-ch-hacking"></a>Hacking nvf</h1>
+<p>nvf is designed for the developer as much as it is designed for the end-user. We
+would like for any contributor to be able to propagate their changes, or add new
+features to the project with minimum possible friction. As such, below are the
+guides and guidelines written to streamline the contribution process and to
+ensure that your valuable input integrates into nvf's development as seamlessly
+as possible without leaving any question marks in your head.</p>
+<p>This section is directed mainly towards those who wish to contribute code into
+the project. If you instead wish to report a bug, or discuss a potential new
+feature implementation (which you do not wish to implement yourself) first look
+among the already <a href="<a href="https://github.com/notashelf/nvf/issues">https://github.com/notashelf/nvf/issues</a>">open issues</a> and if no matching issue exists you may open a
+<a href="<a href="https://github.com/notashelf/nvf/issues/new">https://github.com/notashelf/nvf/issues/new</a>">new issue</a> and describe your problem/request.</p>
+<p>While creating an issue, please try to include as much information as you can,
+ideally also include relevant context in which an issue occurs or a feature
+should be implemented. If you wish to make a contribution, but feel stuck -
+please do not be afraid to submit a pull request, we will help you get it in.</p>
+<pre><code class="language-{=include=}">hacking/getting-started.md
+hacking/guidelines.md
+hacking/testing.md
+hacking/keybinds.md
+hacking/additional-plugins.md
+</code></pre>
+<h1 id="ch-known-issues-quirks"><a href="#known-issues-and-quirks-ch-known-issues-quirks" aria-hidden="true" class="anchor" id="known-issues-and-quirks-ch-known-issues-quirks"></a>Known Issues and Quirks</h1>
+<p>At times, certain plugins and modules may refuse to play nicely with your setup,
+be it a result of generating Lua from Nix, or the state of packaging. This page,
+in turn, will list any known modules or plugins that are known to misbehave, and
+possible workarounds that you may apply.</p>
+<!-- If adding a new known quirk, please create a new page in quirks/ and include
+the name of the file here.-->
+<pre><code class="language-{=include=}">quirks/nodejs.md
+</code></pre>
+<h1 id="ch-options"><a href="#nvf-configuration-options-ch-options" aria-hidden="true" class="anchor" id="nvf-configuration-options-ch-options"></a>nvf Configuration Options</h1>
+<p>Below are the module options provided by nvf, in no particular order. Most
+options will include useful comments, warnings or setup tips on how a module
+option is meant to be used as well as examples in complex cases.</p>
+<p>An offline version of this page is bundled with nvf as a part of the manpages
+which you can access with <code>man 5 nvf</code>. Please let us know if you believe any of
+the options below are missing useful examples.</p>
+<!--
+In the manual, individual options may be referenced in Hyperlinks as follows:
+[](#opt-vim.*) If changing the prefix here, do keep in mind the #opt- suffix will have
+to be changed everywhere.
+-->
+<pre><code class="language-{=include=}">id-prefix: opt-
+list-id: nvf-options
+source: @OPTIONS_JSON@
+</code></pre>
+<!-- ndg: could not include file: /nix/store/p7qs8mf5bl6a7hm27mmjhvpii9mjpkg1-docs/manual/release-notes/release-notes.md -->
+</main>
       </div>
 
       <footer>
@@ -166,115 +286,6 @@
       </footer>
     </div>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Sidebar Toggle functionality
-        const toggle = document.querySelector(".sidebar-toggle");
-
-        if (toggle) {
-          toggle.addEventListener("click", function () {
-            document.body.classList.toggle("sidebar-collapsed");
-
-            // Save state to localStorage
-            const isCollapsed = document.body.classList.contains("sidebar-collapsed");
-            localStorage.setItem("sidebar-collapsed", isCollapsed);
-          });
-        }
-
-        // Make headings clickable for anchor links
-        const content = document.querySelector(".content");
-        const headings = content.querySelectorAll("h1, h2, h3, h4, h5, h6");
-
-        headings.forEach(function (heading) {
-          // Make sure all headings have IDs
-          if (!heading.id) {
-            heading.id = heading.textContent
-              .toLowerCase()
-              .replace(/[^\w\s-]/g, "")
-              .replace(/[\s-]+/g, "-")
-              .trim();
-
-            if (!heading.id) {
-              heading.id =
-                "section-" + Math.random().toString(36).substring(2, 9);
-            }
-          }
-
-          // Make the entire heading clickable
-          heading.addEventListener("click", function (e) {
-            const id = this.id;
-            history.pushState(null, null, "#" + id);
-
-            // Scroll with offset
-            const offset =
-              this.getBoundingClientRect().top + window.scrollY - 80;
-            window.scrollTo({
-              top: offset,
-              behavior: "smooth",
-            });
-          });
-        });
-
-        // Process footnotes
-        const footnoteContainer = document.querySelector(
-          ".footnotes-container",
-        );
-
-        // Find all footnote references and create a footnotes section
-        const footnoteRefs = content.querySelectorAll('a[href^="#fn"]');
-        if (footnoteRefs.length > 0) {
-          const footnotesDiv = document.createElement("div");
-          footnotesDiv.className = "footnotes";
-
-          const footnotesHeading = document.createElement("h2");
-          footnotesHeading.textContent = "Footnotes";
-          footnotesDiv.appendChild(footnotesHeading);
-
-          const footnotesList = document.createElement("ol");
-          footnoteContainer.appendChild(footnotesDiv);
-          footnotesDiv.appendChild(footnotesList);
-
-          // Add footnotes
-          document.querySelectorAll(".footnote").forEach((footnote) => {
-            const id = footnote.id;
-            const content = footnote.innerHTML;
-
-            const li = document.createElement("li");
-            li.id = id;
-            li.innerHTML = content;
-
-            // Add backlink
-            const backlink = document.createElement("a");
-            backlink.href = "#fnref:" + id.replace("fn:", "");
-            backlink.className = "footnote-backlink";
-            backlink.textContent = "↩";
-            li.appendChild(backlink);
-
-            footnotesList.appendChild(li);
-          });
-        }
-
-        // Handle initial hash navigation
-        function scrollToElement(element) {
-          if (element) {
-            const offset =
-              element.getBoundingClientRect().top + window.scrollY - 80;
-            window.scrollTo({
-              top: offset,
-              behavior: "smooth",
-            });
-          }
-        }
-
-        if (window.location.hash) {
-          const targetElement = document.querySelector(window.location.hash);
-          if (targetElement) {
-            setTimeout(() => scrollToElement(targetElement), 0);
-          }
-        }
-      });
-    </script>
-    <script src="assets/search.js"></script>
-
+    
   </body>
 </html>

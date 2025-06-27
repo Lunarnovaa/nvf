@@ -4,45 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Release 0.4 {#sec-release-0.4}</title>
-    <style>
-      /* Critical CSS to prevent sidebar flash */
-      body.sidebar-collapsed .sidebar {
-        transform: translateX(-100%);
-      }
-
-      body.sidebar-collapsed .sidebar-toggle {
-        left: 0;
-      }
-
-      body.sidebar-collapsed .sidebar-toggle svg {
-        transform: rotate(180deg);
-      }
-    </style>
     <script>
-      // Apply sidebar state immediately before any DOM rendering
-      (function() {
+      // Apply sidebar state immediately to prevent flash
+      (function () {
         if (localStorage.getItem("sidebar-collapsed") === "true") {
           document.documentElement.classList.add("sidebar-collapsed");
-          document.body.classList.add("sidebar-collapsed");
         }
       })();
     </script>
-    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="../assets/style.css" />
+    <script defer src="../assets/main.js"></script>
     
-    <script defer src="assets/search.js"></script>
+    <script defer src="../assets/search.js"></script>
     
   </head>
   <body>
     <div class="container">
       <header>
         <div class="header-left">
-          <h1 class="site-title"><a href="index.html">nvf</a></h1>
+          <h1 class="site-title">
+            <a href="../index.html">nvf</a>
+          </h1>
         </div>
         <nav class="header-nav">
           <ul>
-            <li ><a href="options.html">Options</a></li>
+            <li >
+              <a href="../options.html">Options</a>
+            </li>
             
-            <li><a href="search.html">Search</a></li>
+            <li><a href="../search.html">Search</a></li>
             
           </ul>
         </nav>
@@ -69,53 +59,53 @@
           <div class="docs-nav">
             <h2>Documents</h2>
             <ul>
-              <li><a href="release-notes/release-notes.html">Release Notes</a></li>
-<li><a href="release-notes/rl-0.5.html">Release 0.5 {#sec-release-0.5}</a></li>
-<li><a href="release-notes/rl-0.4.html">Release 0.4 {#sec-release-0.4}</a></li>
-<li><a href="release-notes/rl-0.3.html">Release 0.3 {#sec-release-0.3}</a></li>
-<li><a href="release-notes/rl-0.8.html">Release 0.8 {#sec-release-0.8}</a></li>
-<li><a href="release-notes/rl-0.1.html">Release 0.1 {#sec-release-0.1}</a></li>
-<li><a href="release-notes/rl-0.2.html">Release 0.2 {#sec-release-0.2}</a></li>
-<li><a href="release-notes/rl-0.7.html">Release 0.7 {#sec-release-0.7}</a></li>
-<li><a href="release-notes/rl-0.6.html">Release 0.6 {#sec-release-0.6}</a></li>
-<li><a href="manual/installation/custom-configuration.html">Standalone Installation</a></li>
-<li><a href="manual/installation/modules.html">Module Installation</a></li>
-<li><a href="manual/installation/standalone/nixos.html">Standalone Installation on NixOS</a></li>
-<li><a href="manual/installation/standalone/home-manager.html">Standalone Installation on Home-Manager</a></li>
-<li><a href="manual/installation/modules/nixos.html">NixOS Module</a></li>
-<li><a href="manual/installation/modules/home-manager.html">Home-Manager Module</a></li>
-<li><a href="manual/quirks.html">Known Issues and Quirks</a></li>
-<li><a href="manual/configuring.html">Configuring nvf</a></li>
-<li><a href="manual/tips.html">Helpful Tips</a></li>
-<li><a href="manual/try-it-out.html">Try it out</a></li>
-<li><a href="manual/options.html">nvf Configuration Options</a></li>
-<li><a href="manual/quirks/nodejs.html">NodeJS</a></li>
-<li><a href="manual/configuring/languages.html">Language Support</a></li>
-<li><a href="manual/configuring/autocmds.html">Autocommands and Autogroups</a></li>
-<li><a href="manual/configuring/custom-package.html">Custom Neovim Package</a></li>
-<li><a href="manual/configuring/overriding-plugins.html">Overriding plugins</a></li>
-<li><a href="manual/configuring/languages/lsp.html">LSP Custom Packages/Command</a></li>
-<li><a href="manual/configuring/custom-plugins.html">Custom Plugins</a></li>
-<li><a href="manual/configuring/dag-entries.html">DAG entries in nvf</a></li>
-<li><a href="manual/configuring/dags.html">Using DAGs</a></li>
-<li><a href="manual/configuring/custom-plugins/non-lazy-method.html">Non-lazy Method</a></li>
-<li><a href="manual/configuring/custom-plugins/configuring.html">Configuring</a></li>
-<li><a href="manual/configuring/custom-plugins/legacy-method.html">Legacy Method</a></li>
-<li><a href="manual/configuring/custom-plugins/lazy-method.html">Lazy Method</a></li>
-<li><a href="manual/hacking/additional-plugins.html">Adding Plugins</a></li>
-<li><a href="manual/hacking/getting-started.html">Getting Started</a></li>
-<li><a href="manual/hacking/guidelines.html">Guidelines</a></li>
-<li><a href="manual/hacking/testing.html">Testing Changes</a></li>
-<li><a href="manual/hacking/keybinds.html">Keybinds</a></li>
-<li><a href="manual/installation.html">Installing nvf</a></li>
-<li><a href="manual/manual.html">nvf manual</a></li>
-<li><a href="manual/hacking.html">Hacking nvf</a></li>
-<li><a href="manual/tips/debugging-nvf.html">Debugging nvf</a></li>
-<li><a href="manual/tips/offline-docs.html">Offline Documentation</a></li>
-<li><a href="manual/tips/plugin-sources.html">Adding Plugins From Different Sources</a></li>
-<li><a href="manual/tips/pure-lua-config.html">Pure Lua Configuration</a></li>
-<li><a href="manual/preface.html">Preface</a></li>
-<li><a href="search.html">Search</a></li>
+              <li><a href="../release-notes/release-notes.html">Release Notes</a></li>
+<li><a href="../release-notes/rl-0.5.html">Release 0.5 {#sec-release-0.5}</a></li>
+<li><a href="../release-notes/rl-0.4.html">Release 0.4 {#sec-release-0.4}</a></li>
+<li><a href="../release-notes/rl-0.3.html">Release 0.3 {#sec-release-0.3}</a></li>
+<li><a href="../release-notes/rl-0.8.html">Release 0.8 {#sec-release-0.8}</a></li>
+<li><a href="../release-notes/rl-0.1.html">Release 0.1 {#sec-release-0.1}</a></li>
+<li><a href="../release-notes/rl-0.2.html">Release 0.2 {#sec-release-0.2}</a></li>
+<li><a href="../release-notes/rl-0.7.html">Release 0.7 {#sec-release-0.7}</a></li>
+<li><a href="../release-notes/rl-0.6.html">Release 0.6 {#sec-release-0.6}</a></li>
+<li><a href="../manual/installation/custom-configuration.html">Standalone Installation</a></li>
+<li><a href="../manual/installation/modules.html">Module Installation</a></li>
+<li><a href="../manual/installation/standalone/nixos.html">Standalone Installation on NixOS</a></li>
+<li><a href="../manual/installation/standalone/home-manager.html">Standalone Installation on Home-Manager</a></li>
+<li><a href="../manual/installation/modules/nixos.html">NixOS Module</a></li>
+<li><a href="../manual/installation/modules/home-manager.html">Home-Manager Module</a></li>
+<li><a href="../manual/quirks.html">Known Issues and Quirks</a></li>
+<li><a href="../manual/configuring.html">Configuring nvf</a></li>
+<li><a href="../manual/tips.html">Helpful Tips</a></li>
+<li><a href="../manual/try-it-out.html">Try it out</a></li>
+<li><a href="../manual/options.html">nvf Configuration Options</a></li>
+<li><a href="../manual/quirks/nodejs.html">NodeJS</a></li>
+<li><a href="../manual/configuring/languages.html">Language Support</a></li>
+<li><a href="../manual/configuring/autocmds.html">Autocommands and Autogroups</a></li>
+<li><a href="../manual/configuring/custom-package.html">Custom Neovim Package</a></li>
+<li><a href="../manual/configuring/overriding-plugins.html">Overriding plugins</a></li>
+<li><a href="../manual/configuring/languages/lsp.html">LSP Custom Packages/Command</a></li>
+<li><a href="../manual/configuring/custom-plugins.html">Custom Plugins</a></li>
+<li><a href="../manual/configuring/dag-entries.html">DAG entries in nvf</a></li>
+<li><a href="../manual/configuring/dags.html">Using DAGs</a></li>
+<li><a href="../manual/configuring/custom-plugins/non-lazy-method.html">Non-lazy Method</a></li>
+<li><a href="../manual/configuring/custom-plugins/configuring.html">Configuring</a></li>
+<li><a href="../manual/configuring/custom-plugins/legacy-method.html">Legacy Method</a></li>
+<li><a href="../manual/configuring/custom-plugins/lazy-method.html">Lazy Method</a></li>
+<li><a href="../manual/hacking/additional-plugins.html">Adding Plugins</a></li>
+<li><a href="../manual/hacking/getting-started.html">Getting Started</a></li>
+<li><a href="../manual/hacking/guidelines.html">Guidelines</a></li>
+<li><a href="../manual/hacking/testing.html">Testing Changes</a></li>
+<li><a href="../manual/hacking/keybinds.html">Keybinds</a></li>
+<li><a href="../manual/installation.html">Installing nvf</a></li>
+<li><a href="../manual/manual.html">nvf manual</a></li>
+<li><a href="../manual/hacking.html">Hacking nvf</a></li>
+<li><a href="../manual/tips/debugging-nvf.html">Debugging nvf</a></li>
+<li><a href="../manual/tips/offline-docs.html">Offline Documentation</a></li>
+<li><a href="../manual/tips/plugin-sources.html">Adding Plugins From Different Sources</a></li>
+<li><a href="../manual/tips/pure-lua-config.html">Pure Lua Configuration</a></li>
+<li><a href="../manual/preface.html">Preface</a></li>
+<li><a href="../search.html">Search</a></li>
 
             </ul>
           </div>
@@ -123,15 +113,14 @@
           <div class="toc">
             <h2>Contents</h2>
             <ul class="toc-list">
-              <li><a href="#release-0-4-sec-release-0-4">Release 0.4 {#sec-release-0.4}</a>
-<ul><li><a href="#changelog-sec-release-0-4-changelog">Changelog {#sec-release-0.4-changelog}</a>
+              <li><a href="#release-0-4---sec-release-0-4">Release 0.4 {#sec-release-0.4}</a>
+<ul><li><a href="#changelog---sec-release-0-4-changelog">Changelog {#sec-release-0.4-changelog}</a>
 </li></ul></li>
             </ul>
           </div>
         </nav>
 
-        <main class="content">
-          <h1 id="sec-release-0.4">Release 0.4</h1>
+        <main class="content"><h1><a href="#release-04-sec-release-04" aria-hidden="true" class="anchor" id="release-04-sec-release-04"></a>Release 0.4 {#sec-release-0.4}</h1>
 <p>Following the release of v0.3, I have decided to release v0.4 with a massive new
 change: customizable keybinds. As of the 0.4 release, keybinds will no longer be
 hardcoded and instead provided by each module's own keybinds section. The old
@@ -142,85 +131,109 @@ adding keybinds to existing plugins.</p>
 as <code>lazygit</code> integration and the new experimental Lua loader of Neovim 0.9
 thanks to our awesome contributors who made this update possible during my
 absence.</p>
-<h2 id="sec-release-0.4-changelog">Changelog</h2>
-<p><a href="https://github.com/n3oney">n3oney</a>:</p>
+<h2><a href="#changelog-sec-release-04-changelog" aria-hidden="true" class="anchor" id="changelog-sec-release-04-changelog"></a>Changelog {#sec-release-0.4-changelog}</h2>
+<p><a href="<a href="https://github.com/n3oney">https://github.com/n3oney</a>">n3oney</a>:</p>
 <ul>
-<li><p>Streamlined keybind adding process towards new functions in extended stdlib.</p>
+<li>
+<p>Streamlined keybind adding process towards new functions in extended stdlib.</p>
 </li>
-<li><p>Moved default keybinds into keybinds section of each module</p>
+<li>
+<p>Moved default keybinds into keybinds section of each module</p>
 </li>
-<li><p>Simplified luaConfigRC and configRC setting - they can now just take strings</p>
+<li>
+<p>Simplified luaConfigRC and configRC setting - they can now just take strings</p>
 </li>
-<li><p>Refactored the resolveDag function - you can just provide a string now, which
+<li>
+<p>Refactored the resolveDag function - you can just provide a string now, which
 will default to dag.entryAnywhere</p>
 </li>
-<li><p>Fixed formatting sometimes removing parts of files</p>
+<li>
+<p>Fixed formatting sometimes removing parts of files</p>
 </li>
-<li><p>Made formatting synchronous</p>
+<li>
+<p>Made formatting synchronous</p>
 </li>
-<li><p>Gave null-ls priority over other formatters</p>
+<li>
+<p>Gave null-ls priority over other formatters</p>
 </li>
 </ul>
-<p><a href="https://github.com/horriblename">horriblename</a>:</p>
+<p><a href="<a href="https://github.com/horriblename">https://github.com/horriblename</a>">horriblename</a>:</p>
 <ul>
-<li><p>Added <code>clangd</code> as alternative lsp for C/++.</p>
+<li>
+<p>Added <code>clangd</code> as alternative lsp for C/++.</p>
 </li>
-<li><p>Added <code>toggleterm</code> integration for <code>lazygit</code>.</p>
+<li>
+<p>Added <code>toggleterm</code> integration for <code>lazygit</code>.</p>
 </li>
-<li><p>Added new option <code>enableluaLoader</code> to enable neovim's experimental module
+<li>
+<p>Added new option <code>enableluaLoader</code> to enable neovim's experimental module
 loader for faster startup time.</p>
 </li>
-<li><p>Fixed bug where flutter-tools can't find <code>dart</code> LSP</p>
+<li>
+<p>Fixed bug where flutter-tools can't find <code>dart</code> LSP</p>
 </li>
-<li><p>Added Debug Adapter (DAP) support for clang, rust, go, python and dart.</p>
+<li>
+<p>Added Debug Adapter (DAP) support for clang, rust, go, python and dart.</p>
 </li>
 </ul>
-<p><a href="https://github.com/notashelf">notashelf</a>:</p>
+<p><a href="<a href="https://github.com/notashelf">https://github.com/notashelf</a>">notashelf</a>:</p>
 <ul>
-<li><p>Made Copilot's Node package configurable. It is recommended to keep as
+<li>
+<p>Made Copilot's Node package configurable. It is recommended to keep as
 default, but providing a different NodeJS version is now possible.</p>
 </li>
-<li><p>Added <a href="options.html#option-vim-cursorlineOpt" class="option-reference"><code>vim.cursorlineOpt</code></a> for configuring Neovim's <a href="options.html#option-vim-o-cursorlineopt" class="option-reference"><code>vim.o.cursorlineopt</code></a>.</p>
+<li>
+<p>Added <a href="options.html#option-vim-cursorlineOpt" class="option-reference"><code>vim.cursorlineOpt</code></a> for configuring Neovim's <a href="options.html#option-vim-o-cursorlineopt" class="option-reference"><code>vim.o.cursorlineopt</code></a>.</p>
 </li>
-<li><p>Added <a href="options.html#option-filetree-nvimTreeLua-view-cursorline" class="option-reference"><code>filetree.nvimTreeLua.view.cursorline</code></a>, default false, to enable
+<li>
+<p>Added <a href="options.html#option-filetree-nvimTreeLua-view-cursorline" class="option-reference"><code>filetree.nvimTreeLua.view.cursorline</code></a>, default false, to enable
 cursorline in nvimtre.</p>
 </li>
-<li><p>Added Fidget.nvim support for the Catppuccin theme.</p>
+<li>
+<p>Added Fidget.nvim support for the Catppuccin theme.</p>
 </li>
-<li><p>Updated bundled NodeJS version used by <a href="options.html#option-Copilot-lua" class="option-reference"><code>Copilot.lua</code></a>. v16 is now marked as
+<li>
+<p>Updated bundled NodeJS version used by <a href="options.html#option-Copilot-lua" class="option-reference"><code>Copilot.lua</code></a>. v16 is now marked as
 insecure on Nixpkgs, and we updated to v18</p>
 </li>
-<li><p>Enabled Catppuccin modules for plugins available by default.</p>
+<li>
+<p>Enabled Catppuccin modules for plugins available by default.</p>
 </li>
-<li><p>Added experimental Svelte support under <a href="options.html#option-vim-languages" class="option-reference"><code>vim.languages</code></a>.</p>
+<li>
+<p>Added experimental Svelte support under <a href="options.html#option-vim-languages" class="option-reference"><code>vim.languages</code></a>.</p>
 </li>
-<li><p>Removed unnecessary scrollbar element from notifications and codeaction
+<li>
+<p>Removed unnecessary scrollbar element from notifications and codeaction
 warning UI.</p>
 </li>
-<li><p><a href="options.html#option-vim-utility-colorizer" class="option-reference"><code>vim.utility.colorizer</code></a> has been renamed to <a href="options.html#option-vim-utility-ccc" class="option-reference"><code>vim.utility.ccc</code></a> after the plugin
+<li>
+<p><a href="options.html#option-vim-utility-colorizer" class="option-reference"><code>vim.utility.colorizer</code></a> has been renamed to <a href="options.html#option-vim-utility-ccc" class="option-reference"><code>vim.utility.ccc</code></a> after the plugin
 it uses</p>
 </li>
-<li><p>Color preview via <code>nvim-colorizer.lua</code></p>
+<li>
+<p>Color preview via <code>nvim-colorizer.lua</code></p>
 </li>
-<li><p>Updated Lualine statusline UI</p>
+<li>
+<p>Updated Lualine statusline UI</p>
 </li>
-<li><p>Added vim-illuminate for smart highlighting</p>
+<li>
+<p>Added vim-illuminate for smart highlighting</p>
 </li>
-<li><p>Added a module for enabling Neovim's spellchecker</p>
+<li>
+<p>Added a module for enabling Neovim's spellchecker</p>
 </li>
-<li><p>Added prettierd as an alternative formatter to prettier - currently defaults
+<li>
+<p>Added prettierd as an alternative formatter to prettier - currently defaults
 to prettier</p>
 </li>
-<li><p>Fixed presence.nvim inheriting the wrong client id</p>
+<li>
+<p>Fixed presence.nvim inheriting the wrong client id</p>
 </li>
-<li><p>Cleaned up documentation</p>
+<li>
+<p>Cleaned up documentation</p>
 </li>
 </ul>
-
-          <div class="footnotes-container">
-            <!-- Footnotes will be appended here -->
-          </div>
-        </main>
+</main>
       </div>
 
       <footer>
@@ -228,115 +241,6 @@ to prettier</p>
       </footer>
     </div>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Sidebar Toggle functionality
-        const toggle = document.querySelector(".sidebar-toggle");
-
-        if (toggle) {
-          toggle.addEventListener("click", function () {
-            document.body.classList.toggle("sidebar-collapsed");
-
-            // Save state to localStorage
-            const isCollapsed = document.body.classList.contains("sidebar-collapsed");
-            localStorage.setItem("sidebar-collapsed", isCollapsed);
-          });
-        }
-
-        // Make headings clickable for anchor links
-        const content = document.querySelector(".content");
-        const headings = content.querySelectorAll("h1, h2, h3, h4, h5, h6");
-
-        headings.forEach(function (heading) {
-          // Make sure all headings have IDs
-          if (!heading.id) {
-            heading.id = heading.textContent
-              .toLowerCase()
-              .replace(/[^\w\s-]/g, "")
-              .replace(/[\s-]+/g, "-")
-              .trim();
-
-            if (!heading.id) {
-              heading.id =
-                "section-" + Math.random().toString(36).substring(2, 9);
-            }
-          }
-
-          // Make the entire heading clickable
-          heading.addEventListener("click", function (e) {
-            const id = this.id;
-            history.pushState(null, null, "#" + id);
-
-            // Scroll with offset
-            const offset =
-              this.getBoundingClientRect().top + window.scrollY - 80;
-            window.scrollTo({
-              top: offset,
-              behavior: "smooth",
-            });
-          });
-        });
-
-        // Process footnotes
-        const footnoteContainer = document.querySelector(
-          ".footnotes-container",
-        );
-
-        // Find all footnote references and create a footnotes section
-        const footnoteRefs = content.querySelectorAll('a[href^="#fn"]');
-        if (footnoteRefs.length > 0) {
-          const footnotesDiv = document.createElement("div");
-          footnotesDiv.className = "footnotes";
-
-          const footnotesHeading = document.createElement("h2");
-          footnotesHeading.textContent = "Footnotes";
-          footnotesDiv.appendChild(footnotesHeading);
-
-          const footnotesList = document.createElement("ol");
-          footnoteContainer.appendChild(footnotesDiv);
-          footnotesDiv.appendChild(footnotesList);
-
-          // Add footnotes
-          document.querySelectorAll(".footnote").forEach((footnote) => {
-            const id = footnote.id;
-            const content = footnote.innerHTML;
-
-            const li = document.createElement("li");
-            li.id = id;
-            li.innerHTML = content;
-
-            // Add backlink
-            const backlink = document.createElement("a");
-            backlink.href = "#fnref:" + id.replace("fn:", "");
-            backlink.className = "footnote-backlink";
-            backlink.textContent = "↩";
-            li.appendChild(backlink);
-
-            footnotesList.appendChild(li);
-          });
-        }
-
-        // Handle initial hash navigation
-        function scrollToElement(element) {
-          if (element) {
-            const offset =
-              element.getBoundingClientRect().top + window.scrollY - 80;
-            window.scrollTo({
-              top: offset,
-              behavior: "smooth",
-            });
-          }
-        }
-
-        if (window.location.hash) {
-          const targetElement = document.querySelector(window.location.hash);
-          if (targetElement) {
-            setTimeout(() => scrollToElement(targetElement), 0);
-          }
-        }
-      });
-    </script>
-    <script src="assets/search.js"></script>
-
+    
   </body>
 </html>

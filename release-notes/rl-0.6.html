@@ -4,45 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Release 0.6 {#sec-release-0.6}</title>
-    <style>
-      /* Critical CSS to prevent sidebar flash */
-      body.sidebar-collapsed .sidebar {
-        transform: translateX(-100%);
-      }
-
-      body.sidebar-collapsed .sidebar-toggle {
-        left: 0;
-      }
-
-      body.sidebar-collapsed .sidebar-toggle svg {
-        transform: rotate(180deg);
-      }
-    </style>
     <script>
-      // Apply sidebar state immediately before any DOM rendering
-      (function() {
+      // Apply sidebar state immediately to prevent flash
+      (function () {
         if (localStorage.getItem("sidebar-collapsed") === "true") {
           document.documentElement.classList.add("sidebar-collapsed");
-          document.body.classList.add("sidebar-collapsed");
         }
       })();
     </script>
-    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="../assets/style.css" />
+    <script defer src="../assets/main.js"></script>
     
-    <script defer src="assets/search.js"></script>
+    <script defer src="../assets/search.js"></script>
     
   </head>
   <body>
     <div class="container">
       <header>
         <div class="header-left">
-          <h1 class="site-title"><a href="index.html">nvf</a></h1>
+          <h1 class="site-title">
+            <a href="../index.html">nvf</a>
+          </h1>
         </div>
         <nav class="header-nav">
           <ul>
-            <li ><a href="options.html">Options</a></li>
+            <li >
+              <a href="../options.html">Options</a>
+            </li>
             
-            <li><a href="search.html">Search</a></li>
+            <li><a href="../search.html">Search</a></li>
             
           </ul>
         </nav>
@@ -69,53 +59,53 @@
           <div class="docs-nav">
             <h2>Documents</h2>
             <ul>
-              <li><a href="release-notes/release-notes.html">Release Notes</a></li>
-<li><a href="release-notes/rl-0.5.html">Release 0.5 {#sec-release-0.5}</a></li>
-<li><a href="release-notes/rl-0.4.html">Release 0.4 {#sec-release-0.4}</a></li>
-<li><a href="release-notes/rl-0.3.html">Release 0.3 {#sec-release-0.3}</a></li>
-<li><a href="release-notes/rl-0.8.html">Release 0.8 {#sec-release-0.8}</a></li>
-<li><a href="release-notes/rl-0.1.html">Release 0.1 {#sec-release-0.1}</a></li>
-<li><a href="release-notes/rl-0.2.html">Release 0.2 {#sec-release-0.2}</a></li>
-<li><a href="release-notes/rl-0.7.html">Release 0.7 {#sec-release-0.7}</a></li>
-<li><a href="release-notes/rl-0.6.html">Release 0.6 {#sec-release-0.6}</a></li>
-<li><a href="manual/installation/custom-configuration.html">Standalone Installation</a></li>
-<li><a href="manual/installation/modules.html">Module Installation</a></li>
-<li><a href="manual/installation/standalone/nixos.html">Standalone Installation on NixOS</a></li>
-<li><a href="manual/installation/standalone/home-manager.html">Standalone Installation on Home-Manager</a></li>
-<li><a href="manual/installation/modules/nixos.html">NixOS Module</a></li>
-<li><a href="manual/installation/modules/home-manager.html">Home-Manager Module</a></li>
-<li><a href="manual/quirks.html">Known Issues and Quirks</a></li>
-<li><a href="manual/configuring.html">Configuring nvf</a></li>
-<li><a href="manual/tips.html">Helpful Tips</a></li>
-<li><a href="manual/try-it-out.html">Try it out</a></li>
-<li><a href="manual/options.html">nvf Configuration Options</a></li>
-<li><a href="manual/quirks/nodejs.html">NodeJS</a></li>
-<li><a href="manual/configuring/languages.html">Language Support</a></li>
-<li><a href="manual/configuring/autocmds.html">Autocommands and Autogroups</a></li>
-<li><a href="manual/configuring/custom-package.html">Custom Neovim Package</a></li>
-<li><a href="manual/configuring/overriding-plugins.html">Overriding plugins</a></li>
-<li><a href="manual/configuring/languages/lsp.html">LSP Custom Packages/Command</a></li>
-<li><a href="manual/configuring/custom-plugins.html">Custom Plugins</a></li>
-<li><a href="manual/configuring/dag-entries.html">DAG entries in nvf</a></li>
-<li><a href="manual/configuring/dags.html">Using DAGs</a></li>
-<li><a href="manual/configuring/custom-plugins/non-lazy-method.html">Non-lazy Method</a></li>
-<li><a href="manual/configuring/custom-plugins/configuring.html">Configuring</a></li>
-<li><a href="manual/configuring/custom-plugins/legacy-method.html">Legacy Method</a></li>
-<li><a href="manual/configuring/custom-plugins/lazy-method.html">Lazy Method</a></li>
-<li><a href="manual/hacking/additional-plugins.html">Adding Plugins</a></li>
-<li><a href="manual/hacking/getting-started.html">Getting Started</a></li>
-<li><a href="manual/hacking/guidelines.html">Guidelines</a></li>
-<li><a href="manual/hacking/testing.html">Testing Changes</a></li>
-<li><a href="manual/hacking/keybinds.html">Keybinds</a></li>
-<li><a href="manual/installation.html">Installing nvf</a></li>
-<li><a href="manual/manual.html">nvf manual</a></li>
-<li><a href="manual/hacking.html">Hacking nvf</a></li>
-<li><a href="manual/tips/debugging-nvf.html">Debugging nvf</a></li>
-<li><a href="manual/tips/offline-docs.html">Offline Documentation</a></li>
-<li><a href="manual/tips/plugin-sources.html">Adding Plugins From Different Sources</a></li>
-<li><a href="manual/tips/pure-lua-config.html">Pure Lua Configuration</a></li>
-<li><a href="manual/preface.html">Preface</a></li>
-<li><a href="search.html">Search</a></li>
+              <li><a href="../release-notes/release-notes.html">Release Notes</a></li>
+<li><a href="../release-notes/rl-0.5.html">Release 0.5 {#sec-release-0.5}</a></li>
+<li><a href="../release-notes/rl-0.4.html">Release 0.4 {#sec-release-0.4}</a></li>
+<li><a href="../release-notes/rl-0.3.html">Release 0.3 {#sec-release-0.3}</a></li>
+<li><a href="../release-notes/rl-0.8.html">Release 0.8 {#sec-release-0.8}</a></li>
+<li><a href="../release-notes/rl-0.1.html">Release 0.1 {#sec-release-0.1}</a></li>
+<li><a href="../release-notes/rl-0.2.html">Release 0.2 {#sec-release-0.2}</a></li>
+<li><a href="../release-notes/rl-0.7.html">Release 0.7 {#sec-release-0.7}</a></li>
+<li><a href="../release-notes/rl-0.6.html">Release 0.6 {#sec-release-0.6}</a></li>
+<li><a href="../manual/installation/custom-configuration.html">Standalone Installation</a></li>
+<li><a href="../manual/installation/modules.html">Module Installation</a></li>
+<li><a href="../manual/installation/standalone/nixos.html">Standalone Installation on NixOS</a></li>
+<li><a href="../manual/installation/standalone/home-manager.html">Standalone Installation on Home-Manager</a></li>
+<li><a href="../manual/installation/modules/nixos.html">NixOS Module</a></li>
+<li><a href="../manual/installation/modules/home-manager.html">Home-Manager Module</a></li>
+<li><a href="../manual/quirks.html">Known Issues and Quirks</a></li>
+<li><a href="../manual/configuring.html">Configuring nvf</a></li>
+<li><a href="../manual/tips.html">Helpful Tips</a></li>
+<li><a href="../manual/try-it-out.html">Try it out</a></li>
+<li><a href="../manual/options.html">nvf Configuration Options</a></li>
+<li><a href="../manual/quirks/nodejs.html">NodeJS</a></li>
+<li><a href="../manual/configuring/languages.html">Language Support</a></li>
+<li><a href="../manual/configuring/autocmds.html">Autocommands and Autogroups</a></li>
+<li><a href="../manual/configuring/custom-package.html">Custom Neovim Package</a></li>
+<li><a href="../manual/configuring/overriding-plugins.html">Overriding plugins</a></li>
+<li><a href="../manual/configuring/languages/lsp.html">LSP Custom Packages/Command</a></li>
+<li><a href="../manual/configuring/custom-plugins.html">Custom Plugins</a></li>
+<li><a href="../manual/configuring/dag-entries.html">DAG entries in nvf</a></li>
+<li><a href="../manual/configuring/dags.html">Using DAGs</a></li>
+<li><a href="../manual/configuring/custom-plugins/non-lazy-method.html">Non-lazy Method</a></li>
+<li><a href="../manual/configuring/custom-plugins/configuring.html">Configuring</a></li>
+<li><a href="../manual/configuring/custom-plugins/legacy-method.html">Legacy Method</a></li>
+<li><a href="../manual/configuring/custom-plugins/lazy-method.html">Lazy Method</a></li>
+<li><a href="../manual/hacking/additional-plugins.html">Adding Plugins</a></li>
+<li><a href="../manual/hacking/getting-started.html">Getting Started</a></li>
+<li><a href="../manual/hacking/guidelines.html">Guidelines</a></li>
+<li><a href="../manual/hacking/testing.html">Testing Changes</a></li>
+<li><a href="../manual/hacking/keybinds.html">Keybinds</a></li>
+<li><a href="../manual/installation.html">Installing nvf</a></li>
+<li><a href="../manual/manual.html">nvf manual</a></li>
+<li><a href="../manual/hacking.html">Hacking nvf</a></li>
+<li><a href="../manual/tips/debugging-nvf.html">Debugging nvf</a></li>
+<li><a href="../manual/tips/offline-docs.html">Offline Documentation</a></li>
+<li><a href="../manual/tips/plugin-sources.html">Adding Plugins From Different Sources</a></li>
+<li><a href="../manual/tips/pure-lua-config.html">Pure Lua Configuration</a></li>
+<li><a href="../manual/preface.html">Preface</a></li>
+<li><a href="../search.html">Search</a></li>
 
             </ul>
           </div>
@@ -123,18 +113,17 @@
           <div class="toc">
             <h2>Contents</h2>
             <ul class="toc-list">
-              <li><a href="#release-0-6-sec-release-0-6">Release 0.6 {#sec-release-0.6}</a>
-<ul><li><a href="#sec-breaking-changes-and-migration-guide">Breaking Changes and Migration Guide</a>
-<li><a href="#changelog-sec-release-0-6-changelog">Changelog {#sec-release-0.6-changelog}</a>
+              <li><a href="#release-0-6---sec-release-0-6">Release 0.6 {#sec-release-0.6}</a>
+<ul><li><a href="#sec-breaking-changes-and-migration-guide">Breaking Changes and Migration Guide {#sec-breaking-changes-and-migration-guide}</a>
+<li><a href="#changelog---sec-release-0-6-changelog">Changelog {#sec-release-0.6-changelog}</a>
 </li></ul></li>
             </ul>
           </div>
         </nav>
 
-        <main class="content">
-          <h1 id="sec-release-0.6">Release 0.6</h1>
+        <main class="content"><h1><a href="#release-06-sec-release-06" aria-hidden="true" class="anchor" id="release-06-sec-release-06"></a>Release 0.6 {#sec-release-0.6}</h1>
 <p>Release notes for release 0.6</p>
-<h2 id="sec-breaking-changes-and-migration-guide">Breaking Changes and Migration Guide</h2>
+<h2 id="sec-breaking-changes-and-migration-guide"><a href="#breaking-changes-and-migration-guide-sec-breaking-changes-and-migration-guide" aria-hidden="true" class="anchor" id="breaking-changes-and-migration-guide-sec-breaking-changes-and-migration-guide"></a>Breaking Changes and Migration Guide</h2>
 <p>In v0.6 we are introducing <code>setupOpts</code>: many plugin related options are moved
 into their respective <code>setupOpts</code> submodule, e.g. <a href="options.html#option-nvimTree-disableNetrw" class="option-reference"><code>nvimTree.disableNetrw</code></a> is
 renamed to <a href="options.html#option-nvimTree-setupOpts-disable_netrw" class="option-reference"><code>nvimTree.setupOpts.disable_netrw</code></a>.</p>
@@ -147,176 +136,208 @@ the warning, please file a bug report!</p>
 <p>To make your migration process less annoying, here's a keybind that will help
 you with renaming stuff from camelCase to snake_case (you'll be doing that a
 lot):</p>
-<pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;">-- paste this in a temp.lua file and load it in vim with :source /path/to/temp.lua
-</span><span style="font-weight:bold;color:#a71d5d;">function </span><span style="font-weight:bold;color:#795da3;">camelToSnake</span><span style="color:#323232;">()
-</span><span style="color:#323232;">    </span><span style="font-style:italic;color:#969896;">-- Get the current word under the cursor
-</span><span style="color:#323232;">    </span><span style="font-weight:bold;color:#a71d5d;">local </span><span style="color:#323232;">word </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">vim.fn.expand(</span><span style="color:#183691;">&quot;&lt;cword&gt;&quot;</span><span style="color:#323232;">)
-</span><span style="color:#323232;">    </span><span style="font-style:italic;color:#969896;">-- Replace each capital letter with an underscore followed by its lowercase equivalent
-</span><span style="color:#323232;">    </span><span style="font-weight:bold;color:#a71d5d;">local </span><span style="color:#323232;">snakeCase </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#0086b3;">string</span><span style="color:#323232;">.</span><span style="color:#62a35c;">gsub</span><span style="color:#323232;">(word, </span><span style="color:#183691;">&quot;%u&quot;</span><span style="color:#323232;">, </span><span style="font-weight:bold;color:#a71d5d;">function</span><span style="color:#323232;">(match)
-</span><span style="color:#323232;">        </span><span style="font-weight:bold;color:#a71d5d;">return </span><span style="color:#183691;">&quot;_&quot; </span><span style="font-weight:bold;color:#a71d5d;">.. </span><span style="color:#0086b3;">string</span><span style="color:#323232;">.</span><span style="color:#62a35c;">lower</span><span style="color:#323232;">(match)
-</span><span style="color:#323232;">    </span><span style="font-weight:bold;color:#a71d5d;">end</span><span style="color:#323232;">)
-</span><span style="color:#323232;">    </span><span style="font-style:italic;color:#969896;">-- Remove the leading underscore if present
-</span><span style="color:#323232;">    </span><span style="font-weight:bold;color:#a71d5d;">if </span><span style="color:#0086b3;">string</span><span style="color:#323232;">.</span><span style="color:#62a35c;">sub</span><span style="color:#323232;">(snakeCase, </span><span style="color:#0086b3;">1</span><span style="color:#323232;">, </span><span style="color:#0086b3;">1</span><span style="color:#323232;">) </span><span style="font-weight:bold;color:#a71d5d;">== </span><span style="color:#183691;">&quot;_&quot; </span><span style="font-weight:bold;color:#a71d5d;">then
-</span><span style="color:#323232;">        snakeCase </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#0086b3;">string</span><span style="color:#323232;">.</span><span style="color:#62a35c;">sub</span><span style="color:#323232;">(snakeCase, </span><span style="color:#0086b3;">2</span><span style="color:#323232;">)
-</span><span style="color:#323232;">    </span><span style="font-weight:bold;color:#a71d5d;">end
-</span><span style="color:#323232;">    vim.fn.setreg(vim.v.register, snakeCase)
-</span><span style="color:#323232;">    </span><span style="font-style:italic;color:#969896;">-- Select the word under the cursor and paste
-</span><span style="color:#323232;">    vim.cmd(</span><span style="color:#183691;">&quot;normal! viwP&quot;</span><span style="color:#323232;">)
-</span><span style="font-weight:bold;color:#a71d5d;">end
-</span><span style="color:#323232;">
-</span><span style="color:#323232;">vim.api.nvim_set_keymap(</span><span style="color:#183691;">&#39;n&#39;</span><span style="color:#323232;">, </span><span style="color:#183691;">&#39;&lt;leader&gt;a&#39;</span><span style="color:#323232;">, </span><span style="color:#183691;">&#39;:lua camelToSnake()&lt;CR&gt;&#39;</span><span style="color:#323232;">, { </span><span style="color:#183691;">noremap </span><span style="color:#323232;">= </span><span style="color:#0086b3;">true</span><span style="color:#323232;">, </span><span style="color:#183691;">silent </span><span style="color:#323232;">= </span><span style="color:#0086b3;">true </span><span style="color:#323232;">})
-</span></pre>
-<h2 id="sec-release-0.6-changelog">Changelog</h2>
-<p><a href="https://github.com/ksonj">ksonj</a>:</p>
+<pre><code class="language-lua">-- paste this in a temp.lua file and load it in vim with :source /path/to/temp.lua
+function camelToSnake()
+    -- Get the current word under the cursor
+    local word = vim.fn.expand(&quot;&lt;cword&gt;&quot;)
+    -- Replace each capital letter with an underscore followed by its lowercase equivalent
+    local snakeCase = string.gsub(word, &quot;%u&quot;, function(match)
+        return &quot;_&quot; .. string.lower(match)
+    end)
+    -- Remove the leading underscore if present
+    if string.sub(snakeCase, 1, 1) == &quot;_&quot; then
+        snakeCase = string.sub(snakeCase, 2)
+    end
+    vim.fn.setreg(vim.v.register, snakeCase)
+    -- Select the word under the cursor and paste
+    vim.cmd(&quot;normal! viwP&quot;)
+end
+
+vim.api.nvim_set_keymap('n', '&lt;leader&gt;a', ':lua camelToSnake()&lt;CR&gt;', { noremap = true, silent = true })
+</code></pre>
+<h2><a href="#changelog-sec-release-06-changelog" aria-hidden="true" class="anchor" id="changelog-sec-release-06-changelog"></a>Changelog {#sec-release-0.6-changelog}</h2>
+<p><a href="<a href="https://github.com/ksonj">https://github.com/ksonj</a>">ksonj</a>:</p>
 <ul>
-<li><p>Added Terraform language support.</p>
+<li>
+<p>Added Terraform language support.</p>
 </li>
-<li><p>Added <a href="options.html#option-ChatGPT-nvim" class="option-reference"><code>ChatGPT.nvim</code></a>, which can be enabled with
+<li>
+<p>Added <a href="options.html#option-ChatGPT-nvim" class="option-reference"><code>ChatGPT.nvim</code></a>, which can be enabled with
 <a href="#opt-vim.assistant.chatgpt.enable"></a>. Do keep in mind that this option
 requires <code>OPENAI_API_KEY</code> environment variable to be set.</p>
 </li>
 </ul>
-<p><a href="https://github.com/donnerinoern">donnerinoern</a>:</p>
+<p><a href="<a href="https://github.com/donnerinoern">https://github.com/donnerinoern</a>">donnerinoern</a>:</p>
 <ul>
-<li><p>Added Gruvbox theme.</p>
+<li>
+<p>Added Gruvbox theme.</p>
 </li>
-<li><p>Added marksman LSP for Markdown.</p>
+<li>
+<p>Added marksman LSP for Markdown.</p>
 </li>
-<li><p>Fixed markdown preview with Glow not working and added an option for changing
+<li>
+<p>Fixed markdown preview with Glow not working and added an option for changing
 the preview keybind.</p>
 </li>
-<li><p>colorizer.nvim: switched to a maintained fork.</p>
+<li>
+<p>colorizer.nvim: switched to a maintained fork.</p>
 </li>
-<li><p>Added <code>markdown-preview.nvim</code>, moved <a href="options.html#option-glow-nvim" class="option-reference"><code>glow.nvim</code></a> to a brand new
+<li>
+<p>Added <code>markdown-preview.nvim</code>, moved <a href="options.html#option-glow-nvim" class="option-reference"><code>glow.nvim</code></a> to a brand new
 <a href="options.html#option-vim-utility-preview" class="option-reference"><code>vim.utility.preview</code></a> category.</p>
 </li>
 </ul>
-<p><a href="https://github.com/elijahimmer">elijahimmer</a></p>
+<p><a href="<a href="https://github.com/elijahimmer">https://github.com/elijahimmer</a>">elijahimmer</a></p>
 <ul>
 <li>Added rose-pine theme.</li>
 </ul>
-<p><a href="https://poz.pet">poz</a>:</p>
+<p><a href="<a href="https://poz.pet">https://poz.pet</a>">poz</a>:</p>
 <ul>
 <li>Added <a href="options.html#option-vim-autocomplete-alwaysComplete" class="option-reference"><code>vim.autocomplete.alwaysComplete</code></a>. Allows users to have the autocomplete
 window popup only when manually activated.</li>
 </ul>
-<p><a href="https://github.com/horriblename">horriblename</a>:</p>
+<p><a href="<a href="https://github.com/horriblename">https://github.com/horriblename</a>">horriblename</a>:</p>
 <ul>
-<li><p>Fixed empty winbar when breadcrumbs are disabled.</p>
+<li>
+<p>Fixed empty winbar when breadcrumbs are disabled.</p>
 </li>
-<li><p>Added custom <code>setupOpts</code> for various plugins.</p>
+<li>
+<p>Added custom <code>setupOpts</code> for various plugins.</p>
 </li>
-<li><p>Removed support for deprecated plugin "nvim-compe".</p>
+<li>
+<p>Removed support for deprecated plugin &quot;nvim-compe&quot;.</p>
 </li>
-<li><p>Moved most plugins to <code>setupOpts</code> method.</p>
+<li>
+<p>Moved most plugins to <code>setupOpts</code> method.</p>
 </li>
 </ul>
-<p><a href="https://github.com/frothymarrow">frothymarrow</a>:</p>
+<p><a href="<a href="https://github.com/frothymarrow">https://github.com/frothymarrow</a>">frothymarrow</a>:</p>
 <ul>
-<li><p>Added option <a href="options.html#option-vim-luaPackages" class="option-reference"><code>vim.luaPackages</code></a> to wrap neovim with extra Lua packages.</p>
+<li>
+<p>Added option <a href="options.html#option-vim-luaPackages" class="option-reference"><code>vim.luaPackages</code></a> to wrap neovim with extra Lua packages.</p>
 </li>
-<li><p>Rewrote the entire <a href="options.html#option-fidget-nvim" class="option-reference"><code>fidget.nvim</code></a> module to include extensive configuration
+<li>
+<p>Rewrote the entire <a href="options.html#option-fidget-nvim" class="option-reference"><code>fidget.nvim</code></a> module to include extensive configuration
 options. Option <code>vim.fidget-nvim.align.bottom</code> has been removed in favor of
 <code>vim.fidget-nvim.notification.window.align</code>, which now supports <code>top</code> and
 <code>bottom</code> values. <code>vim.fidget-nvim.align.right</code> has no longer any equivalent
 and also has been removed.</p>
 </li>
-<li><p><code>which-key.nvim</code> categories can now be customized through
+<li>
+<p><code>which-key.nvim</code> categories can now be customized through
 <a href="#opt-vim.binds.whichKey.register">vim.binds.whichKey.register</a></p>
 </li>
-<li><p>Added <code>magick</code> to <a href="options.html#option-vim-luaPackages" class="option-reference"><code>vim.luaPackages</code></a> for <a href="options.html#option-image-nvim" class="option-reference"><code>image.nvim</code></a>.</p>
+<li>
+<p>Added <code>magick</code> to <a href="options.html#option-vim-luaPackages" class="option-reference"><code>vim.luaPackages</code></a> for <a href="options.html#option-image-nvim" class="option-reference"><code>image.nvim</code></a>.</p>
 </li>
-<li><p>Added <code>alejandra</code> to the default devShell.</p>
+<li>
+<p>Added <code>alejandra</code> to the default devShell.</p>
 </li>
-<li><p>Migrated neovim-flake to <code>makeNeovimUnstable</code> wrapper.</p>
+<li>
+<p>Migrated neovim-flake to <code>makeNeovimUnstable</code> wrapper.</p>
 </li>
 </ul>
-<p><a href="https://github.com/notashelf">notashelf</a>:</p>
+<p><a href="<a href="https://github.com/notashelf">https://github.com/notashelf</a>">notashelf</a>:</p>
 <ul>
-<li><p>Finished moving to <code>nixosOptionsDoc</code> in the documentation and changelog. All
+<li>
+<p>Finished moving to <code>nixosOptionsDoc</code> in the documentation and changelog. All
 documentation options and files are fully free of Asciidoc, and will now use
 Nixpkgs flavored markdown.</p>
 </li>
-<li><p>Bumped plugin inputs to their latest versions.</p>
+<li>
+<p>Bumped plugin inputs to their latest versions.</p>
 </li>
-<li><p>Deprecated <a href="options.html#option-presence-nvim" class="option-reference"><code>presence.nvim</code></a> in favor of <code>neocord</code>. This means
+<li>
+<p>Deprecated <a href="options.html#option-presence-nvim" class="option-reference"><code>presence.nvim</code></a> in favor of <code>neocord</code>. This means
 <code>vim.rich-presence.presence-nvim</code> is removed and will throw a warning if used.
 You are recommended to rewrite your neocord configuration from scratch based
-on the. <a href="https://github.com/IogaMaster/neocord">official documentation</a></p>
+on the. <a href="<a href="https://github.com/IogaMaster/neocord">https://github.com/IogaMaster/neocord</a>">official documentation</a></p>
 </li>
-<li><p>Removed Tabnine plugin due to the usage of imperative tarball downloads. If
+<li>
+<p>Removed Tabnine plugin due to the usage of imperative tarball downloads. If
 you'd like to see it back, please create an issue.</p>
 </li>
-<li><p>Added support for css and tailwindcss through
+<li>
+<p>Added support for css and tailwindcss through
 vscode-language-servers-extracted &amp; tailwind-language-server. Those can be
 enabled through <a href="options.html#option-vim-languages-css" class="option-reference"><code>vim.languages.css</code></a> and <a href="options.html#option-vim-languages-tailwind" class="option-reference"><code>vim.languages.tailwind</code></a>.</p>
 </li>
-<li><p>Lualine module now allows customizing <code>always_divide_middle</code>, <code>ignore_focus</code>
+<li>
+<p>Lualine module now allows customizing <code>always_divide_middle</code>, <code>ignore_focus</code>
 and <code>disabled_filetypes</code> through the new options:
 <a href="#opt-vim.statusline.lualine.alwaysDivideMiddle">vim.statusline.lualine.alwaysDivideMiddle</a>,
 <a href="#opt-vim.statusline.lualine.ignoreFocus">vim.statusline.lualine.ignoreFocus</a>
 and
 <a href="#opt-vim.statusline.lualine.disabledFiletypes">vim.statusline.lualine.disabledFiletypes</a>.</p>
 </li>
-<li><p>Updated all plugin inputs to their latest versions (<strong>21.04.2024</strong>) - this
+<li>
+<p>Updated all plugin inputs to their latest versions (<strong>21.04.2024</strong>) - this
 brought minor color changes to the Catppuccin theme.</p>
 </li>
-<li><p>Moved home-manager module entrypoint to <code>flake/modules</code> and added an
+<li>
+<p>Moved home-manager module entrypoint to <code>flake/modules</code> and added an
 experimental Nixos module. This requires further testing before it can be
 considered ready for use.</p>
 </li>
-<li><p>Made lib calls explicit. E.g. <a href="options.html#option-lib-strings-optionalString" class="option-reference"><code>lib.strings.optionalString</code></a> instead of
+<li>
+<p>Made lib calls explicit. E.g. <a href="options.html#option-lib-strings-optionalString" class="option-reference"><code>lib.strings.optionalString</code></a> instead of
 <a href="options.html#option-lib-optionalString" class="option-reference"><code>lib.optionalString</code></a>. This is a pattern expected to be followed by all
 contributors in the future.</p>
 </li>
-<li><p>Added <a href="options.html#option-image-nvim" class="option-reference"><code>image.nvim</code></a> for image previews.</p>
+<li>
+<p>Added <a href="options.html#option-image-nvim" class="option-reference"><code>image.nvim</code></a> for image previews.</p>
 </li>
-<li><p>The final neovim package is now exposed. This means you can build the neovim
+<li>
+<p>The final neovim package is now exposed. This means you can build the neovim
 package that will be added to your package list without rebuilding your system
 to test if your configuration yields a broken package.</p>
 </li>
-<li><p>Changed the tree structure to distinguish between core options and plugin
+<li>
+<p>Changed the tree structure to distinguish between core options and plugin
 options.</p>
 </li>
-<li><p>Added plugin auto-discovery from plugin inputs. This is mostly from
-<a href="https://github.com/jordanisaacs/neovim-flake">JordanIsaac's neovim-flake</a>.
+<li>
+<p>Added plugin auto-discovery from plugin inputs. This is mostly from
+<a href="<a href="https://github.com/jordanisaacs/neovim-flake">https://github.com/jordanisaacs/neovim-flake</a>">JordanIsaac's neovim-flake</a>.
 Allows contributors to add plugin inputs with the <code>plugin-</code> prefix to have
 them automatically discovered for the <code>plugin</code> type in <code>lib/types</code>.</p>
 </li>
-<li><p>Moved internal <code>wrapLuaConfig</code> to the extended library, structured its
+<li>
+<p>Moved internal <code>wrapLuaConfig</code> to the extended library, structured its
 arguments to take <code>luaBefore</code>, <code>luaConfig</code> and <code>luaAfter</code> as strings, which
 are then concatted inside a lua block.</p>
 </li>
-<li><p>Added <a href="#opt-vim.luaConfigPre"></a> and <a href="#opt-vim.luaConfigPost"></a> for inserting
+<li>
+<p>Added <a href="#opt-vim.luaConfigPre"></a> and <a href="#opt-vim.luaConfigPost"></a> for inserting
 verbatim Lua configuration before and after the resolved Lua DAG respectively.
 Both of those options take strings as the type, so you may read the contents
 of a Lua file from a given path.</p>
 </li>
-<li><p>Added <a href="options.html#option-vim-spellchecking-ignoredFiletypes" class="option-reference"><code>vim.spellchecking.ignoredFiletypes</code></a> and
+<li>
+<p>Added <a href="options.html#option-vim-spellchecking-ignoredFiletypes" class="option-reference"><code>vim.spellchecking.ignoredFiletypes</code></a> and
 <a href="options.html#option-vim-spellChecking-programmingWordlist-enable" class="option-reference"><code>vim.spellChecking.programmingWordlist.enable</code></a> for ignoring certain filetypes
 in spellchecking and enabling <code>vim-dirtytalk</code> respectively. The previously
 used <code>vim.spellcheck.vim-dirtytalk</code> aliases to the latter option.</p>
 </li>
-<li><p>Exposed <code>withRuby</code>, <code>withNodeJs</code>, <code>withPython3</code>, and <code>python3Packages</code> from
+<li>
+<p>Exposed <code>withRuby</code>, <code>withNodeJs</code>, <code>withPython3</code>, and <code>python3Packages</code> from
 the <code>makeNeovimConfig</code> function under their respective options.</p>
 </li>
-<li><p>Added <a href="#opt-vim.extraPackages"></a> for appending additional packages to the
+<li>
+<p>Added <a href="#opt-vim.extraPackages"></a> for appending additional packages to the
 wrapper PATH, making said packages available while inside the Neovim session.</p>
 </li>
-<li><p>Made Treesitter options configurable, and moved treesitter-context to
+<li>
+<p>Made Treesitter options configurable, and moved treesitter-context to
 <code>setupOpts</code> while it is enabled.</p>
 </li>
-<li><p>Added <a href="#opt-vim.notify.nvim-notify.setupOpts.render"></a> which takes either a
-string of enum, or a Lua function. The default is "compact", but you may
+<li>
+<p>Added <a href="#opt-vim.notify.nvim-notify.setupOpts.render"></a> which takes either a
+string of enum, or a Lua function. The default is &quot;compact&quot;, but you may
 change it according to nvim-notify documentation.</p>
 </li>
 </ul>
-
-          <div class="footnotes-container">
-            <!-- Footnotes will be appended here -->
-          </div>
-        </main>
+</main>
       </div>
 
       <footer>
@@ -324,115 +345,6 @@ change it according to nvim-notify documentation.</p>
       </footer>
     </div>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Sidebar Toggle functionality
-        const toggle = document.querySelector(".sidebar-toggle");
-
-        if (toggle) {
-          toggle.addEventListener("click", function () {
-            document.body.classList.toggle("sidebar-collapsed");
-
-            // Save state to localStorage
-            const isCollapsed = document.body.classList.contains("sidebar-collapsed");
-            localStorage.setItem("sidebar-collapsed", isCollapsed);
-          });
-        }
-
-        // Make headings clickable for anchor links
-        const content = document.querySelector(".content");
-        const headings = content.querySelectorAll("h1, h2, h3, h4, h5, h6");
-
-        headings.forEach(function (heading) {
-          // Make sure all headings have IDs
-          if (!heading.id) {
-            heading.id = heading.textContent
-              .toLowerCase()
-              .replace(/[^\w\s-]/g, "")
-              .replace(/[\s-]+/g, "-")
-              .trim();
-
-            if (!heading.id) {
-              heading.id =
-                "section-" + Math.random().toString(36).substring(2, 9);
-            }
-          }
-
-          // Make the entire heading clickable
-          heading.addEventListener("click", function (e) {
-            const id = this.id;
-            history.pushState(null, null, "#" + id);
-
-            // Scroll with offset
-            const offset =
-              this.getBoundingClientRect().top + window.scrollY - 80;
-            window.scrollTo({
-              top: offset,
-              behavior: "smooth",
-            });
-          });
-        });
-
-        // Process footnotes
-        const footnoteContainer = document.querySelector(
-          ".footnotes-container",
-        );
-
-        // Find all footnote references and create a footnotes section
-        const footnoteRefs = content.querySelectorAll('a[href^="#fn"]');
-        if (footnoteRefs.length > 0) {
-          const footnotesDiv = document.createElement("div");
-          footnotesDiv.className = "footnotes";
-
-          const footnotesHeading = document.createElement("h2");
-          footnotesHeading.textContent = "Footnotes";
-          footnotesDiv.appendChild(footnotesHeading);
-
-          const footnotesList = document.createElement("ol");
-          footnoteContainer.appendChild(footnotesDiv);
-          footnotesDiv.appendChild(footnotesList);
-
-          // Add footnotes
-          document.querySelectorAll(".footnote").forEach((footnote) => {
-            const id = footnote.id;
-            const content = footnote.innerHTML;
-
-            const li = document.createElement("li");
-            li.id = id;
-            li.innerHTML = content;
-
-            // Add backlink
-            const backlink = document.createElement("a");
-            backlink.href = "#fnref:" + id.replace("fn:", "");
-            backlink.className = "footnote-backlink";
-            backlink.textContent = "↩";
-            li.appendChild(backlink);
-
-            footnotesList.appendChild(li);
-          });
-        }
-
-        // Handle initial hash navigation
-        function scrollToElement(element) {
-          if (element) {
-            const offset =
-              element.getBoundingClientRect().top + window.scrollY - 80;
-            window.scrollTo({
-              top: offset,
-              behavior: "smooth",
-            });
-          }
-        }
-
-        if (window.location.hash) {
-          const targetElement = document.querySelector(window.location.hash);
-          if (targetElement) {
-            setTimeout(() => scrollToElement(targetElement), 0);
-          }
-        }
-      });
-    </script>
-    <script src="assets/search.js"></script>
-
+    
   </body>
 </html>

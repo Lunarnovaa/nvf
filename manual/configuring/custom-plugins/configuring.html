@@ -3,46 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Configuring</title>
-    <style>
-      /* Critical CSS to prevent sidebar flash */
-      body.sidebar-collapsed .sidebar {
-        transform: translateX(-100%);
-      }
-
-      body.sidebar-collapsed .sidebar-toggle {
-        left: 0;
-      }
-
-      body.sidebar-collapsed .sidebar-toggle svg {
-        transform: rotate(180deg);
-      }
-    </style>
+    <title>Configuring {#sec-configuring-plugins}</title>
     <script>
-      // Apply sidebar state immediately before any DOM rendering
-      (function() {
+      // Apply sidebar state immediately to prevent flash
+      (function () {
         if (localStorage.getItem("sidebar-collapsed") === "true") {
           document.documentElement.classList.add("sidebar-collapsed");
-          document.body.classList.add("sidebar-collapsed");
         }
       })();
     </script>
-    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="../../../assets/style.css" />
+    <script defer src="../../../assets/main.js"></script>
     
-    <script defer src="assets/search.js"></script>
+    <script defer src="../../../assets/search.js"></script>
     
   </head>
   <body>
     <div class="container">
       <header>
         <div class="header-left">
-          <h1 class="site-title"><a href="index.html">nvf</a></h1>
+          <h1 class="site-title">
+            <a href="../../../index.html">nvf</a>
+          </h1>
         </div>
         <nav class="header-nav">
           <ul>
-            <li ><a href="options.html">Options</a></li>
+            <li >
+              <a href="../../../options.html">Options</a>
+            </li>
             
-            <li><a href="search.html">Search</a></li>
+            <li><a href="../../../search.html">Search</a></li>
             
           </ul>
         </nav>
@@ -69,53 +59,53 @@
           <div class="docs-nav">
             <h2>Documents</h2>
             <ul>
-              <li><a href="release-notes/release-notes.html">Release Notes</a></li>
-<li><a href="release-notes/rl-0.5.html">Release 0.5 {#sec-release-0.5}</a></li>
-<li><a href="release-notes/rl-0.4.html">Release 0.4 {#sec-release-0.4}</a></li>
-<li><a href="release-notes/rl-0.3.html">Release 0.3 {#sec-release-0.3}</a></li>
-<li><a href="release-notes/rl-0.8.html">Release 0.8 {#sec-release-0.8}</a></li>
-<li><a href="release-notes/rl-0.1.html">Release 0.1 {#sec-release-0.1}</a></li>
-<li><a href="release-notes/rl-0.2.html">Release 0.2 {#sec-release-0.2}</a></li>
-<li><a href="release-notes/rl-0.7.html">Release 0.7 {#sec-release-0.7}</a></li>
-<li><a href="release-notes/rl-0.6.html">Release 0.6 {#sec-release-0.6}</a></li>
-<li><a href="manual/installation/custom-configuration.html">Standalone Installation</a></li>
-<li><a href="manual/installation/modules.html">Module Installation</a></li>
-<li><a href="manual/installation/standalone/nixos.html">Standalone Installation on NixOS</a></li>
-<li><a href="manual/installation/standalone/home-manager.html">Standalone Installation on Home-Manager</a></li>
-<li><a href="manual/installation/modules/nixos.html">NixOS Module</a></li>
-<li><a href="manual/installation/modules/home-manager.html">Home-Manager Module</a></li>
-<li><a href="manual/quirks.html">Known Issues and Quirks</a></li>
-<li><a href="manual/configuring.html">Configuring nvf</a></li>
-<li><a href="manual/tips.html">Helpful Tips</a></li>
-<li><a href="manual/try-it-out.html">Try it out</a></li>
-<li><a href="manual/options.html">nvf Configuration Options</a></li>
-<li><a href="manual/quirks/nodejs.html">NodeJS</a></li>
-<li><a href="manual/configuring/languages.html">Language Support</a></li>
-<li><a href="manual/configuring/autocmds.html">Autocommands and Autogroups</a></li>
-<li><a href="manual/configuring/custom-package.html">Custom Neovim Package</a></li>
-<li><a href="manual/configuring/overriding-plugins.html">Overriding plugins</a></li>
-<li><a href="manual/configuring/languages/lsp.html">LSP Custom Packages/Command</a></li>
-<li><a href="manual/configuring/custom-plugins.html">Custom Plugins</a></li>
-<li><a href="manual/configuring/dag-entries.html">DAG entries in nvf</a></li>
-<li><a href="manual/configuring/dags.html">Using DAGs</a></li>
-<li><a href="manual/configuring/custom-plugins/non-lazy-method.html">Non-lazy Method</a></li>
-<li><a href="manual/configuring/custom-plugins/configuring.html">Configuring</a></li>
-<li><a href="manual/configuring/custom-plugins/legacy-method.html">Legacy Method</a></li>
-<li><a href="manual/configuring/custom-plugins/lazy-method.html">Lazy Method</a></li>
-<li><a href="manual/hacking/additional-plugins.html">Adding Plugins</a></li>
-<li><a href="manual/hacking/getting-started.html">Getting Started</a></li>
-<li><a href="manual/hacking/guidelines.html">Guidelines</a></li>
-<li><a href="manual/hacking/testing.html">Testing Changes</a></li>
-<li><a href="manual/hacking/keybinds.html">Keybinds</a></li>
-<li><a href="manual/installation.html">Installing nvf</a></li>
-<li><a href="manual/manual.html">nvf manual</a></li>
-<li><a href="manual/hacking.html">Hacking nvf</a></li>
-<li><a href="manual/tips/debugging-nvf.html">Debugging nvf</a></li>
-<li><a href="manual/tips/offline-docs.html">Offline Documentation</a></li>
-<li><a href="manual/tips/plugin-sources.html">Adding Plugins From Different Sources</a></li>
-<li><a href="manual/tips/pure-lua-config.html">Pure Lua Configuration</a></li>
-<li><a href="manual/preface.html">Preface</a></li>
-<li><a href="search.html">Search</a></li>
+              <li><a href="../../../release-notes/release-notes.html">Release Notes</a></li>
+<li><a href="../../../release-notes/rl-0.5.html">Release 0.5 {#sec-release-0.5}</a></li>
+<li><a href="../../../release-notes/rl-0.4.html">Release 0.4 {#sec-release-0.4}</a></li>
+<li><a href="../../../release-notes/rl-0.3.html">Release 0.3 {#sec-release-0.3}</a></li>
+<li><a href="../../../release-notes/rl-0.8.html">Release 0.8 {#sec-release-0.8}</a></li>
+<li><a href="../../../release-notes/rl-0.1.html">Release 0.1 {#sec-release-0.1}</a></li>
+<li><a href="../../../release-notes/rl-0.2.html">Release 0.2 {#sec-release-0.2}</a></li>
+<li><a href="../../../release-notes/rl-0.7.html">Release 0.7 {#sec-release-0.7}</a></li>
+<li><a href="../../../release-notes/rl-0.6.html">Release 0.6 {#sec-release-0.6}</a></li>
+<li><a href="../../../manual/installation/custom-configuration.html">Standalone Installation</a></li>
+<li><a href="../../../manual/installation/modules.html">Module Installation</a></li>
+<li><a href="../../../manual/installation/standalone/nixos.html">Standalone Installation on NixOS</a></li>
+<li><a href="../../../manual/installation/standalone/home-manager.html">Standalone Installation on Home-Manager</a></li>
+<li><a href="../../../manual/installation/modules/nixos.html">NixOS Module</a></li>
+<li><a href="../../../manual/installation/modules/home-manager.html">Home-Manager Module</a></li>
+<li><a href="../../../manual/quirks.html">Known Issues and Quirks</a></li>
+<li><a href="../../../manual/configuring.html">Configuring nvf</a></li>
+<li><a href="../../../manual/tips.html">Helpful Tips</a></li>
+<li><a href="../../../manual/try-it-out.html">Try it out</a></li>
+<li><a href="../../../manual/options.html">nvf Configuration Options</a></li>
+<li><a href="../../../manual/quirks/nodejs.html">NodeJS</a></li>
+<li><a href="../../../manual/configuring/languages.html">Language Support</a></li>
+<li><a href="../../../manual/configuring/autocmds.html">Autocommands and Autogroups</a></li>
+<li><a href="../../../manual/configuring/custom-package.html">Custom Neovim Package</a></li>
+<li><a href="../../../manual/configuring/overriding-plugins.html">Overriding plugins</a></li>
+<li><a href="../../../manual/configuring/languages/lsp.html">LSP Custom Packages/Command</a></li>
+<li><a href="../../../manual/configuring/custom-plugins.html">Custom Plugins</a></li>
+<li><a href="../../../manual/configuring/dag-entries.html">DAG entries in nvf</a></li>
+<li><a href="../../../manual/configuring/dags.html">Using DAGs</a></li>
+<li><a href="../../../manual/configuring/custom-plugins/non-lazy-method.html">Non-lazy Method</a></li>
+<li><a href="../../../manual/configuring/custom-plugins/configuring.html">Configuring</a></li>
+<li><a href="../../../manual/configuring/custom-plugins/legacy-method.html">Legacy Method</a></li>
+<li><a href="../../../manual/configuring/custom-plugins/lazy-method.html">Lazy Method</a></li>
+<li><a href="../../../manual/hacking/additional-plugins.html">Adding Plugins</a></li>
+<li><a href="../../../manual/hacking/getting-started.html">Getting Started</a></li>
+<li><a href="../../../manual/hacking/guidelines.html">Guidelines</a></li>
+<li><a href="../../../manual/hacking/testing.html">Testing Changes</a></li>
+<li><a href="../../../manual/hacking/keybinds.html">Keybinds</a></li>
+<li><a href="../../../manual/installation.html">Installing nvf</a></li>
+<li><a href="../../../manual/manual.html">nvf manual</a></li>
+<li><a href="../../../manual/hacking.html">Hacking nvf</a></li>
+<li><a href="../../../manual/tips/debugging-nvf.html">Debugging nvf</a></li>
+<li><a href="../../../manual/tips/offline-docs.html">Offline Documentation</a></li>
+<li><a href="../../../manual/tips/plugin-sources.html">Adding Plugins From Different Sources</a></li>
+<li><a href="../../../manual/tips/pure-lua-config.html">Pure Lua Configuration</a></li>
+<li><a href="../../../manual/preface.html">Preface</a></li>
+<li><a href="../../../search.html">Search</a></li>
 
             </ul>
           </div>
@@ -123,17 +113,16 @@
           <div class="toc">
             <h2>Contents</h2>
             <ul class="toc-list">
-              <li><a href="#sec-configuring-plugins">Configuring</a>
-<ul><li><a href="#ch-vim-lazy-plugins">Lazy Plugins</a>
-<li><a href="#ch-vim-extra-plugins">Standard API</a>
-<ul><li><a href="#setup-using-luaconfigrc">Setup using luaConfigRC</a>
+              <li><a href="#sec-configuring-plugins">Configuring {#sec-configuring-plugins}</a>
+<ul><li><a href="#ch-vim-lazy-plugins">Lazy Plugins {#ch-vim-lazy-plugins}</a>
+<li><a href="#ch-vim-extra-plugins">Standard API {#ch-vim-extra-plugins}</a>
+<ul><li><a href="#setup-using-luaconfigrc">Setup using luaConfigRC {#setup-using-luaconfigrc}</a>
 </li></ul></li></ul></li>
             </ul>
           </div>
         </nav>
 
-        <main class="content">
-          <h1 id="sec-configuring-plugins">Configuring</h1>
+        <main class="content"><h1 id="sec-configuring-plugins"><a href="#configuring-sec-configuring-plugins" aria-hidden="true" class="anchor" id="configuring-sec-configuring-plugins"></a>Configuring</h1>
 <p>Just making the plugin to your Neovim configuration available might not always
 be enough., for example, if the plugin requires a setup table. In that case, you
 can write custom Lua configuration using one of</p>
@@ -142,63 +131,60 @@ can write custom Lua configuration using one of</p>
 <li><code>config.vim.extraPlugins.*.setup</code></li>
 <li><a href="options.html#option-config-vim-luaConfigRC" class="option-reference"><code>config.vim.luaConfigRC</code></a>.</li>
 </ul>
-<h2 id="ch-vim-lazy-plugins">Lazy Plugins</h2>
+<h2 id="ch-vim-lazy-plugins"><a href="#lazy-plugins-ch-vim-lazy-plugins" aria-hidden="true" class="anchor" id="lazy-plugins-ch-vim-lazy-plugins"></a>Lazy Plugins</h2>
 <p><code>config.vim.lazy.plugins.*.setupOpts</code> is useful for lazy-loading plugins, and
 uses an extended version of <code>lz.n's</code> <code>PluginSpec</code> to expose a familiar
 interface. <code>setupModule</code> and <code>setupOpt</code> can be used if the plugin uses a
 <code>require('module').setup(...)</code> pattern. Otherwise, the <code>before</code> and <code>after</code>
 hooks should do what you need.</p>
-<pre style="background-color:#ffffff;">
-<span style="color:#323232;">{
-</span><span style="color:#323232;">  </span><span style="color:#795da3;">config</span><span style="color:#323232;">.</span><span style="color:#795da3;">vim</span><span style="color:#323232;">.</span><span style="color:#795da3;">lazy</span><span style="color:#323232;">.</span><span style="color:#795da3;">plugins </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">{
-</span><span style="color:#323232;">    </span><span style="color:#795da3;">aerial</span><span style="color:#323232;">.</span><span style="color:#795da3;">nvim </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">{
-</span><span style="color:#323232;">    </span><span style="font-style:italic;color:#969896;"># ^^^^^^^^^ this name should match the package.pname or package.name
-</span><span style="color:#323232;">      </span><span style="color:#795da3;">package </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">aerial-nvim;
-</span><span style="color:#323232;">
-</span><span style="color:#323232;">      </span><span style="color:#795da3;">setupModule </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#183691;">&quot;aerial&quot;</span><span style="color:#323232;">;
-</span><span style="color:#323232;">      </span><span style="color:#795da3;">setupOpts </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">{</span><span style="color:#795da3;">option_name </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#0086b3;">false</span><span style="color:#323232;">;};
-</span><span style="color:#323232;">
-</span><span style="color:#323232;">      </span><span style="color:#795da3;">after </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#183691;">&quot;print(&#39;aerial loaded&#39;)&quot;</span><span style="color:#323232;">;
-</span><span style="color:#323232;">    };
-</span><span style="color:#323232;">  };
-</span><span style="color:#323232;">}
-</span></pre>
-<h2 id="ch-vim-extra-plugins">Standard API</h2>
+<pre><code class="language-nix">{
+  config.vim.lazy.plugins = {
+    aerial.nvim = {
+    # ^^^^^^^^^ this name should match the package.pname or package.name
+      package = aerial-nvim;
+
+      setupModule = &quot;aerial&quot;;
+      setupOpts = {option_name = false;};
+
+      after = &quot;print('aerial loaded')&quot;;
+    };
+  };
+}
+</code></pre>
+<h2 id="ch-vim-extra-plugins"><a href="#standard-api-ch-vim-extra-plugins" aria-hidden="true" class="anchor" id="standard-api-ch-vim-extra-plugins"></a>Standard API</h2>
 <p><a href="options.html#option-vim-extraPlugins" class="option-reference"><code>vim.extraPlugins</code></a> uses an attribute set, which maps DAG section names to a
 custom type, which has the fields <code>package</code>, <code>after</code>, <code>setup</code>. They allow you to
 set the package of the plugin, the sections its setup code should be after (note
 that the <code>extraPlugins</code> option has its own DAG scope), and the its setup code
 respectively. For example:</p>
-<pre style="background-color:#ffffff;">
-<span style="color:#323232;">{pkgs</span><span style="font-weight:bold;color:#a71d5d;">, ...</span><span style="color:#323232;">}: {
-</span><span style="color:#323232;">  </span><span style="color:#795da3;">config</span><span style="color:#323232;">.</span><span style="color:#795da3;">vim</span><span style="color:#323232;">.</span><span style="color:#795da3;">extraPlugins </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">{
-</span><span style="color:#323232;">    </span><span style="color:#795da3;">aerial </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">{
-</span><span style="color:#323232;">      </span><span style="color:#795da3;">package </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">pkgs</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">vimPlugins</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">aerial-nvim;
-</span><span style="color:#323232;">      </span><span style="color:#795da3;">setup </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#183691;">&quot;require(&#39;aerial&#39;).setup {}&quot;</span><span style="color:#323232;">;
-</span><span style="color:#323232;">    };
-</span><span style="color:#323232;">
-</span><span style="color:#323232;">    </span><span style="color:#795da3;">harpoon </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">{
-</span><span style="color:#323232;">      </span><span style="color:#795da3;">package </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">pkgs</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">vimPlugins</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">harpoon;
-</span><span style="color:#323232;">      </span><span style="color:#795da3;">setup </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#183691;">&quot;require(&#39;harpoon&#39;).setup {}&quot;</span><span style="color:#323232;">;
-</span><span style="color:#323232;">      </span><span style="color:#795da3;">after </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">[</span><span style="color:#183691;">&quot;aerial&quot;</span><span style="color:#323232;">]; </span><span style="font-style:italic;color:#969896;"># place harpoon configuration after aerial
-</span><span style="color:#323232;">    };
-</span><span style="color:#323232;">  };
-</span><span style="color:#323232;">}
-</span></pre>
-<h3 id="setup-using-luaconfigrc">Setup using luaConfigRC</h3>
+<pre><code class="language-nix">{pkgs, ...}: {
+  config.vim.extraPlugins = {
+    aerial = {
+      package = pkgs.vimPlugins.aerial-nvim;
+      setup = &quot;require('aerial').setup {}&quot;;
+    };
+
+    harpoon = {
+      package = pkgs.vimPlugins.harpoon;
+      setup = &quot;require('harpoon').setup {}&quot;;
+      after = [&quot;aerial&quot;]; # place harpoon configuration after aerial
+    };
+  };
+}
+</code></pre>
+<h3 id="setup-using-luaconfigrc"><a href="#setup-using-luaconfigrc-setup-using-luaconfigrc" aria-hidden="true" class="anchor" id="setup-using-luaconfigrc-setup-using-luaconfigrc"></a>Setup using luaConfigRC</h3>
 <p><a href="options.html#option-vim-luaConfigRC" class="option-reference"><code>vim.luaConfigRC</code></a> also uses an attribute set, but this one is resolved as a DAG
 directly. The attribute names denote the section names, and the values lua code.
 For example:</p>
-<pre style="background-color:#ffffff;">
-<span style="color:#323232;">{
-</span><span style="color:#323232;">  </span><span style="font-style:italic;color:#969896;"># This will create a section called &quot;aquarium&quot; in the &#39;init.lua&#39; with the
-</span><span style="color:#323232;">  </span><span style="font-style:italic;color:#969896;"># contents of your custom configuration. By default &#39;entryAnywhere&#39; is implied
-</span><span style="color:#323232;">  </span><span style="font-style:italic;color:#969896;"># in DAGs, so this will be inserted to an arbitrary position. In the case you 
-</span><span style="color:#323232;">  </span><span style="font-style:italic;color:#969896;"># wish to control the position of this section with more precision, please
-</span><span style="color:#323232;">  </span><span style="font-style:italic;color:#969896;"># look into the DAGs section of the manual.
-</span><span style="color:#323232;">  </span><span style="color:#795da3;">config</span><span style="color:#323232;">.</span><span style="color:#795da3;">vim</span><span style="color:#323232;">.</span><span style="color:#795da3;">luaConfigRC</span><span style="color:#323232;">.</span><span style="color:#795da3;">aquarium </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#183691;">&quot;vim.cmd(&#39;colorscheme aquiarum&#39;)&quot;</span><span style="color:#323232;">;
-</span><span style="color:#323232;">}
-</span></pre>
+<pre><code class="language-nix">{
+  # This will create a section called &quot;aquarium&quot; in the 'init.lua' with the
+  # contents of your custom configuration. By default 'entryAnywhere' is implied
+  # in DAGs, so this will be inserted to an arbitrary position. In the case you 
+  # wish to control the position of this section with more precision, please
+  # look into the DAGs section of the manual.
+  config.vim.luaConfigRC.aquarium = &quot;vim.cmd('colorscheme aquiarum')&quot;;
+}
+</code></pre>
 <!-- deno-fmt-ignore-start -->
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -212,11 +198,7 @@ use.</p>
 to find out more about the DAG system.</p>
 </div>
 <!-- deno-fmt-ignore-end -->
-
-          <div class="footnotes-container">
-            <!-- Footnotes will be appended here -->
-          </div>
-        </main>
+</main>
       </div>
 
       <footer>
@@ -224,115 +206,6 @@ to find out more about the DAG system.</p>
       </footer>
     </div>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Sidebar Toggle functionality
-        const toggle = document.querySelector(".sidebar-toggle");
-
-        if (toggle) {
-          toggle.addEventListener("click", function () {
-            document.body.classList.toggle("sidebar-collapsed");
-
-            // Save state to localStorage
-            const isCollapsed = document.body.classList.contains("sidebar-collapsed");
-            localStorage.setItem("sidebar-collapsed", isCollapsed);
-          });
-        }
-
-        // Make headings clickable for anchor links
-        const content = document.querySelector(".content");
-        const headings = content.querySelectorAll("h1, h2, h3, h4, h5, h6");
-
-        headings.forEach(function (heading) {
-          // Make sure all headings have IDs
-          if (!heading.id) {
-            heading.id = heading.textContent
-              .toLowerCase()
-              .replace(/[^\w\s-]/g, "")
-              .replace(/[\s-]+/g, "-")
-              .trim();
-
-            if (!heading.id) {
-              heading.id =
-                "section-" + Math.random().toString(36).substring(2, 9);
-            }
-          }
-
-          // Make the entire heading clickable
-          heading.addEventListener("click", function (e) {
-            const id = this.id;
-            history.pushState(null, null, "#" + id);
-
-            // Scroll with offset
-            const offset =
-              this.getBoundingClientRect().top + window.scrollY - 80;
-            window.scrollTo({
-              top: offset,
-              behavior: "smooth",
-            });
-          });
-        });
-
-        // Process footnotes
-        const footnoteContainer = document.querySelector(
-          ".footnotes-container",
-        );
-
-        // Find all footnote references and create a footnotes section
-        const footnoteRefs = content.querySelectorAll('a[href^="#fn"]');
-        if (footnoteRefs.length > 0) {
-          const footnotesDiv = document.createElement("div");
-          footnotesDiv.className = "footnotes";
-
-          const footnotesHeading = document.createElement("h2");
-          footnotesHeading.textContent = "Footnotes";
-          footnotesDiv.appendChild(footnotesHeading);
-
-          const footnotesList = document.createElement("ol");
-          footnoteContainer.appendChild(footnotesDiv);
-          footnotesDiv.appendChild(footnotesList);
-
-          // Add footnotes
-          document.querySelectorAll(".footnote").forEach((footnote) => {
-            const id = footnote.id;
-            const content = footnote.innerHTML;
-
-            const li = document.createElement("li");
-            li.id = id;
-            li.innerHTML = content;
-
-            // Add backlink
-            const backlink = document.createElement("a");
-            backlink.href = "#fnref:" + id.replace("fn:", "");
-            backlink.className = "footnote-backlink";
-            backlink.textContent = "↩";
-            li.appendChild(backlink);
-
-            footnotesList.appendChild(li);
-          });
-        }
-
-        // Handle initial hash navigation
-        function scrollToElement(element) {
-          if (element) {
-            const offset =
-              element.getBoundingClientRect().top + window.scrollY - 80;
-            window.scrollTo({
-              top: offset,
-              behavior: "smooth",
-            });
-          }
-        }
-
-        if (window.location.hash) {
-          const targetElement = document.querySelector(window.location.hash);
-          if (targetElement) {
-            setTimeout(() => scrollToElement(targetElement), 0);
-          }
-        }
-      });
-    </script>
-    <script src="assets/search.js"></script>
-
+    
   </body>
 </html>
